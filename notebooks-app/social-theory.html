@@ -1,0 +1,1523 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Social Theory Notebook</title>
+<meta name="theme-color" content="#7a1422">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Notebooks">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="icons/icon-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b241f;
+    --muted:#59685f;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --surface-2:#e2e8e2;
+    --line:#d4dbd3;
+    --accent:#2c6f5c;
+    --accent-ink:#ffffff;
+    --gold:#a9791f;
+    --shadow: 0 1px 2px rgba(20,30,24,.06), 0 6px 20px -10px rgba(20,30,24,.18);
+    --font-display:'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --font-body:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#e8ece9; --muted:#9fb0a6; --paper:#111713; --surface:#171f1a; --surface-2:#1e2921;
+      --line:#2b362f; --accent:#5fb79c; --accent-ink:#0d1512; --gold:#d9a53f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#e8ece9; --muted:#9fb0a6; --paper:#111713; --surface:#171f1a; --surface-2:#1e2921;
+    --line:#2b362f; --accent:#5fb79c; --accent-ink:#0d1512; --gold:#d9a53f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{ background:var(--paper); color:var(--ink); font-family:var(--font-body); margin:0; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:var(--font-display); text-wrap:balance; margin:0; }
+  p{ margin:0; }
+  a{ color:var(--accent); }
+
+  .app{ max-width:1180px; margin:0 auto; padding-inline:20px; }
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:18px; border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .home-link{ display:inline-flex; align-items:center; gap:4px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:6px 4px; border-radius:6px; }
+  .home-link:hover{ color:var(--accent); }
+  .home-link:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .brand h1{ font-size:1.5rem; font-weight:600; letter-spacing:-.01em; }
+  .brand .course{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; }
+  .menu-btn{
+    display:none; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    border-radius:8px; padding:8px 10px; font-family:var(--font-mono); font-size:.8rem; cursor:pointer;
+  }
+  .menu-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .search-wrap{ position:relative; flex:1 1 220px; max-width:360px; }
+  .search-input{
+    width:100%; font-family:var(--font-mono); font-size:.82rem; padding:9px 11px;
+    border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink);
+  }
+  .search-input:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .search-results{
+    position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:30;
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); max-height:340px; overflow-y:auto; padding:6px;
+  }
+  .search-result{
+    display:block; width:100%; text-align:left; border:none; background:transparent; color:var(--ink);
+    padding:8px 9px; border-radius:7px; cursor:pointer; font-size:.84rem; line-height:1.45;
+  }
+  .search-result:hover, .search-result:focus-visible{ background:var(--surface-2); }
+  .search-result .sr-unit{ display:block; font-family:var(--font-mono); font-size:.65rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); margin-bottom:3px; }
+  .search-result mark{ background:transparent; color:var(--gold); font-weight:700; padding:0; }
+  .search-empty{ padding:10px; font-size:.82rem; color:var(--muted); }
+  @keyframes flashbg{ 0%{ background:rgba(169,121,31,.35); } 100%{ background:transparent; } }
+  .flash-hit{ animation:flashbg 1.6s ease; border-radius:8px; }
+
+  .layout{ display:grid; grid-template-columns:232px 1fr; gap:32px; padding-block:28px 60px; align-items:start; }
+  .rail-scrim{ display:none; }
+
+  .rail{
+    position:sticky; top:16px; display:flex; flex-direction:column; gap:2px;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:8px; box-shadow:var(--shadow);
+  }
+  .rail-item{
+    display:flex; align-items:center; gap:9px; width:100%; text-align:left; border:none; background:transparent; color:var(--ink);
+    font-family:var(--font-body); font-size:.87rem; font-weight:500; padding:9px 10px; border-radius:8px; cursor:pointer;
+  }
+  .rail-item:hover{ background:var(--surface-2); }
+  .rail-item.active{ background:var(--accent); color:var(--accent-ink); }
+  .rail-item.active .dot{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .rail-item:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .dot{ width:7px; height:7px; border-radius:50%; flex:none; border:1.5px solid var(--muted); background:transparent; }
+  .dot.done{ background:var(--accent); border-color:var(--accent); }
+  .dot.progress{ background:var(--gold); border-color:var(--gold); }
+  .rail-item.active .dot.progress{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .rail-sep{ height:1px; background:var(--line); margin:6px 4px; }
+  .rail-foot{ padding:10px 10px 4px; }
+  .rail-foot a{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted); text-decoration:none; }
+  .rail-foot a:hover{ color:var(--accent); }
+
+  .content{ min-width:0; }
+  .pane{ display:flex; flex-direction:column; gap:26px; }
+  .pane-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:10px; }
+  .pane-head h2{ font-size:1.9rem; font-weight:600; }
+  .status-pill{
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase;
+    padding:4px 9px; border-radius:99px; border:1px solid var(--line); color:var(--muted);
+  }
+  .status-pill.done{ color:var(--accent); border-color:var(--accent); }
+  .status-pill.progress{ color:var(--gold); border-color:var(--gold); }
+
+  .block{ display:flex; flex-direction:column; gap:10px; }
+  .cite{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+  h3.sub{ font-size:1.15rem; font-weight:600; margin-top:4px; }
+  .lede{ font-size:.98rem; line-height:1.65; max-width:66ch; }
+  .lede.muted{ color:var(--muted); font-style:italic; }
+
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow); }
+
+  blockquote.pull{
+    margin:0; padding:12px 16px; border-left:3px solid var(--gold);
+    background:var(--surface); border-radius:0 10px 10px 0; box-shadow:var(--shadow);
+    font-size:.95rem; line-height:1.6; max-width:68ch;
+  }
+  blockquote.pull cite{ display:block; margin-top:8px; font-family:var(--font-mono); font-size:.72rem; color:var(--muted); font-style:normal; }
+
+  .qa{ display:flex; flex-direction:column; gap:12px; }
+  .qa-item{ display:flex; flex-direction:column; gap:5px; max-width:70ch; }
+  .qa-item .q{ font-weight:600; font-size:.94rem; }
+  .qa-item .q::before{ content:"Q · "; color:var(--accent); font-family:var(--font-mono); font-weight:500; }
+  .qa-item .a{ font-size:.94rem; line-height:1.62; color:var(--ink); }
+
+  ul.list, ol.list{ margin:0; padding-left:1.2em; display:flex; flex-direction:column; gap:7px; max-width:66ch; font-size:.94rem; line-height:1.55; }
+  ul.list li::marker, ol.list li::marker{ color:var(--accent); }
+
+  .readings-unit{ display:flex; flex-direction:column; gap:10px; }
+  .readings-unit h3.sub{ margin-top:10px; }
+  details.reading-card{ max-width:74ch; }
+  details.reading-card > summary.rd-head{
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; cursor:pointer; list-style:none;
+    position:relative; padding-right:26px; margin:-2px 0;
+  }
+  details.reading-card > summary.rd-head::-webkit-details-marker{ display:none; }
+  details.reading-card > summary.rd-head::after{
+    content:''; position:absolute; right:2px; top:6px; width:8px; height:8px;
+    border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+    transform:rotate(-45deg); transition:transform .15s ease;
+  }
+  details.reading-card[open] > summary.rd-head::after{ transform:rotate(45deg); top:2px; }
+  details.reading-card > summary.rd-head:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:6px; }
+  .rd-body{ display:flex; flex-direction:column; gap:12px; padding-top:12px; }
+  .rd-date{ font-family:var(--font-mono); font-size:.76rem; font-weight:700; color:var(--accent); white-space:nowrap; }
+  .rd-flag{ font-size:.82rem; line-height:1.5; color:var(--muted); font-style:italic; }
+  .rd-off{ font-size:.86rem; color:var(--muted); font-style:italic; padding:2px 2px; }
+  .rd-terms{ display:flex; flex-direction:column; gap:7px; background:var(--surface-2); border-radius:9px; padding:11px 13px; }
+  .rd-term{ font-size:.86rem; line-height:1.55; }
+  .rd-term strong{ color:var(--accent); font-weight:600; }
+  .rd-check{ font-size:.9rem; line-height:1.55; padding:2px 2px 0; border-top:1px dashed var(--line); padding-top:9px; }
+  .rd-check strong{ color:var(--gold); font-weight:600; }
+
+  .table-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); }
+  table{ border-collapse:collapse; width:100%; min-width:640px; background:var(--surface); font-size:.86rem; }
+  table th, table td{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5; }
+  table th{ font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); background:var(--surface-2); }
+  table tr:last-child td{ border-bottom:none; }
+
+  .term{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:13px 15px; box-shadow:var(--shadow); }
+  .term dt{ font-family:var(--font-mono); font-weight:500; font-size:.88rem; color:var(--accent); }
+  .term dd{ margin:5px 0 0; font-size:.9rem; line-height:1.55; color:var(--ink); }
+  .term-simple{ display:block; margin-top:9px; font-size:.86rem; line-height:1.5; color:var(--ink); background:var(--surface-2); padding:9px 11px; border-radius:8px; }
+  .term-simple strong{ color:var(--accent); font-weight:600; }
+  .term-ex{ display:block; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); font-size:.84rem; line-height:1.5; color:var(--muted); }
+  .term-ex strong{ color:var(--gold); font-weight:600; }
+  .glossary-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  .empty{ border:1px dashed var(--line); border-radius:12px; padding:28px 20px; text-align:center; color:var(--muted); font-size:.92rem; max-width:52ch; }
+
+  footer.note{ margin-top:8px; font-size:.8rem; color:var(--muted); max-width:60ch; line-height:1.5; }
+
+  /* Flashcards */
+  .fc-toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .chip{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.03em; text-transform:uppercase;
+    padding:6px 11px; border-radius:99px; border:1px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer;
+  }
+  .chip.active{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .chip:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .fc-stage{ display:flex; flex-direction:column; align-items:center; gap:16px; padding-block:8px; }
+  .fc-progress{ font-family:var(--font-mono); font-size:.78rem; color:var(--muted); }
+  .fc-card-wrap{ width:100%; max-width:460px; perspective:1400px; }
+  .fc-card{ position:relative; width:100%; min-height:220px; cursor:pointer; transform-style:preserve-3d; transition:transform .45s cubic-bezier(.4,.2,.2,1); }
+  .fc-card.flipped{ transform:rotateY(180deg); }
+  .fc-card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:14px; }
+  .fc-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:14px;
+    border:1px solid var(--line); box-shadow:var(--shadow); background:var(--surface);
+    display:flex; flex-direction:column; justify-content:center; gap:10px; padding:22px 24px; text-align:center;
+  }
+  .fc-face.back{ transform:rotateY(180deg); background:var(--surface-2); }
+  .fc-tag{ font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); min-height:1em; }
+  .fc-text{ font-size:1.05rem; line-height:1.5; font-weight:500; }
+  .fc-face.back .fc-text{ font-weight:400; font-size:.94rem; text-align:left; }
+  .fc-hint{ font-family:var(--font-mono); font-size:.68rem; color:var(--muted); }
+  .fc-controls{ display:flex; align-items:center; gap:10px; }
+  .fc-btn{
+    font-family:var(--font-body); font-weight:600; font-size:.85rem; border:1px solid var(--line);
+    background:var(--surface); color:var(--ink); padding:9px 14px; border-radius:9px; cursor:pointer;
+  }
+  .fc-btn:hover{ background:var(--surface-2); }
+  .fc-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .fc-btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .fc-star{ background:transparent; border:1px solid var(--line); border-radius:9px; padding:9px 14px; cursor:pointer; color:var(--muted); font-family:var(--font-body); font-size:.85rem; }
+  .fc-star.starred{ color:var(--gold); border-color:var(--gold); }
+  .fc-star:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+
+  /* Teach Me */
+  .chip[disabled]{ opacity:.4; cursor:not-allowed; }
+  .teach-progress-wrap{ display:flex; flex-direction:column; gap:6px; max-width:70ch; }
+  .teach-progress-bar{ height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; }
+  .teach-progress-fill{ height:100%; background:var(--accent); border-radius:99px; transition:width .3s ease; }
+  .teach-card{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px 26px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:14px; max-width:70ch; }
+  .teach-card h3{ font-size:1.35rem; font-weight:600; }
+  .teach-body{ font-size:1rem; line-height:1.7; }
+  .teach-check{ background:var(--surface-2); border-radius:10px; padding:14px 16px; display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+  .teach-check .tc-label{ font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--gold); }
+  .teach-check .tc-q{ font-weight:600; font-size:.93rem; }
+  .teach-check .tc-a{ font-size:.9rem; line-height:1.55; display:none; padding-top:8px; margin-top:2px; border-top:1px dashed var(--line); width:100%; }
+  .teach-check .tc-a.shown{ display:block; }
+  .teach-reveal-btn{ font-family:var(--font-body); font-weight:600; font-size:.8rem; border:1px solid var(--line); background:var(--surface); color:var(--accent); padding:7px 12px; border-radius:8px; cursor:pointer; }
+  .teach-reveal-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .teach-nav{ display:flex; align-items:center; justify-content:space-between; gap:10px; max-width:70ch; }
+  .teach-dots{ display:flex; gap:6px; flex-wrap:wrap; max-width:220px; }
+  .teach-dot{ width:9px; height:9px; border-radius:50%; border:1.5px solid var(--line); background:transparent; cursor:pointer; padding:0; }
+  .teach-dot.done{ background:var(--accent); border-color:var(--accent); }
+  .teach-dot.current{ border-color:var(--gold); background:var(--gold); }
+  .teach-end{ display:flex; flex-wrap:wrap; gap:10px; }
+
+  /* Timeline */
+  .timeline-wrap{ overflow-x:auto; padding-bottom:8px; }
+  .timeline{ position:relative; min-width:720px; padding:20px 10px 34px; }
+  .tl-axis{ position:relative; height:1px; background:var(--line); margin-left:170px; margin-bottom:28px; }
+  .tl-tick{ position:absolute; top:-4px; width:1px; height:9px; background:var(--line); }
+  .tl-tick-label{ position:absolute; top:10px; transform:translateX(-50%); font-family:var(--font-mono); font-size:.66rem; color:var(--muted); white-space:nowrap; }
+  .tl-row{ display:flex; align-items:center; height:32px; }
+  .tl-name{ width:170px; flex:none; font-size:.82rem; font-weight:600; padding-right:12px; text-align:right; }
+  .tl-track{ position:relative; flex:1; height:100%; }
+  .tl-bar{ position:absolute; top:9px; height:15px; border-radius:99px; background:var(--muted); opacity:.32; }
+  .tl-bar.covered{ background:var(--accent); opacity:1; }
+  .tl-bar.progress{ background:var(--gold); opacity:1; }
+  .tl-bar.context{ background:transparent; border:1.5px dashed var(--muted); opacity:.9; }
+  .tl-legend{ display:flex; gap:16px; flex-wrap:wrap; font-size:.78rem; color:var(--muted); margin-top:14px; }
+  .tl-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .tl-swatch{ width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  @media (max-width:820px){
+    .layout{ grid-template-columns:1fr; padding-block:18px 40px; }
+    .menu-btn{ display:inline-flex; }
+    .rail{
+      position:fixed; inset:0 auto 0 0; height:100dvh; width:240px; z-index:20;
+      transform:translateX(-105%); transition:transform .2s ease; border-radius:0; overflow-y:auto; top:0;
+    }
+    .rail.open{ transform:translateX(0); }
+    .rail-scrim{ display:none; position:fixed; inset:0; background:rgba(10,14,11,.4); z-index:19; }
+    .rail-scrim.open{ display:block; }
+    .glossary-grid{ grid-template-columns:1fr; }
+    .pane-head h2{ font-size:1.55rem; }
+    .search-wrap{ order:3; flex-basis:100%; max-width:none; }
+  }
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <a class="home-link" href="index.html">&larr; Notebooks</a>
+      <h1>Social Theory Notebook</h1>
+      <span class="course">SOCI 201 &middot; Prof. Russo &middot; Fall 2026</span>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search notes&hellip;" autocomplete="off" aria-label="Search notebook">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="rail">Units &#9776;</button>
+  </div>
+
+  <div class="layout">
+    <div class="rail-scrim" id="scrim"></div>
+    <nav class="rail" id="rail" aria-label="Units">
+      <button class="rail-item" data-target="readings">&#128197; Daily Readings</button>
+      <div class="rail-sep"></div>
+      <button class="rail-item active" data-target="orient"><span class="dot done"></span>Getting Oriented</button>
+      <button class="rail-item" data-target="marx"><span class="dot done"></span>Unit 1 &middot; Marx</button>
+      <button class="rail-item" data-target="durkheim"><span class="dot progress"></span>Unit 2 &middot; Durkheim</button>
+      <button class="rail-item" data-target="weber"><span class="dot"></span>Unit 3 &middot; Weber</button>
+      <button class="rail-item" data-target="dubois"><span class="dot"></span>Unit 4 &middot; Du Bois&rarr;Black Feminism</button>
+      <button class="rail-item" data-target="symbolic"><span class="dot"></span>Unit 5 &middot; Symbolic Interactionism</button>
+      <button class="rail-item" data-target="power"><span class="dot"></span>Unit 6 &middot; Sex, Bodies, Power</button>
+      <button class="rail-item" data-target="bourdieu"><span class="dot"></span>Unit 7 &middot; Bourdieu</button>
+      <div class="rail-sep"></div>
+      <button class="rail-item" data-target="glossary">Key Terms Glossary</button>
+      <div class="rail-sep"></div>
+      <button class="rail-item" data-target="flashcards">Flashcards</button>
+      <button class="rail-item" data-target="teach">Teach Me</button>
+      <button class="rail-item" data-target="timeline">Theorist Timeline</button>
+      <div class="rail-foot"><a href="https://claude.ai/artifact/3ynRXAHUGFQHTwrHTmH1yL" target="_blank" rel="noopener">&rarr; Course Tracker (deadlines)</a></div>
+    </nav>
+
+    <main class="content">
+
+      <!-- DAILY READINGS -->
+      <section class="pane" id="pane-readings" hidden>
+        <div class="pane-head"><h2>Daily Readings</h2></div>
+        <p class="lede muted">Click a date to open it. A fuller walkthrough of what the reading argues, key terms defined in plain language, and a question to make sure you can actually use the concept, not just name it. Built from general knowledge of these theorists/texts, not a page-by-page summary of Dillon &mdash; still do the actual reading, this is your pre-class primer. Send along actual notes, slides, or guided-question answers from a specific class and I&rsquo;ll fold them into that date&rsquo;s card.</p>
+
+        <div class="readings-unit">
+          <h3 class="sub">Getting Oriented</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 8/31</span><span class="cite">Morrison, &ldquo;Introduction&rdquo; to Formations of Modern Social Thought, pp.&nbsp;1&ndash;6</span></summary>
+            <div class="rd-body">
+            <p class="lede">This sets up why the course begins with a &ldquo;why now&rdquo; question instead of jumping straight to Marx. Morrison argues social theory emerged as a discipline because European societies in the late 1700s&ndash;1800s were going through three ruptures at once &mdash; political, economic, and a redefinition of the individual &mdash; and thinkers needed a new kind of explanatory tool to make sense of change at that scale. The reading frames &ldquo;social theory&rdquo; as a genre: large-scale, comparative-historical explanations that look across societies and eras for patterns and causes, not a description of one event. Read it slowly &mdash; the three shifts introduced here are the scaffolding the entire semester hangs on. Marx, Durkheim, and Weber are best understood as three different attempts to explain the same rupture.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Meta-theory / large-scale explanatory perspective:</strong> a framework built to explain broad patterns across whole societies and historical periods, not a single case.</div>
+              <div class="rd-term"><strong>Comparative-historical method:</strong> studying change by comparing different societies and time periods side by side to isolate causes.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Name the three developments of modernity this reading introduces, and explain in one sentence what&rsquo;s changing in each.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/2</span><span class="cite">Morrison, pp.&nbsp;7&ndash;end</span></summary>
+            <div class="rd-body">
+            <p class="lede">Finishes the intellectual groundwork by turning to the Enlightenment as the philosophical shift underneath the political and economic ones. Before it, claims about truth and social order leaned on religious revelation and inherited tradition &mdash; a king rules because God ordained it, a peasant stays a peasant because that&rsquo;s the order of things. The Enlightenment swapped that for reason, observation, and skepticism as the tests for what&rsquo;s true, which is part of what makes it possible to even ask &ldquo;why is society organized this way?&rdquo; instead of just accepting that it is. Morrison also flags evolutionism &mdash; the belief that history moves in a single line of progress &mdash; as a powerful, double-edged Enlightenment-era idea: it fueled optimism about social improvement, but it was also weaponized into racist hierarchies of &ldquo;advanced&rdquo; vs. &ldquo;primitive&rdquo; peoples, a thread that returns directly in the Du Bois unit. By the end you should be able to hold Marx, Durkheim, and Weber&rsquo;s projects in your head as different responses to the same Enlightenment-era assumptions.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Enlightenment:</strong> the 18th-century intellectual movement that replaced tradition/religious authority with reason and empirical observation as the basis for truth claims.</div>
+              <div class="rd-term"><strong>Evolutionism:</strong> the (contested) belief that societies develop in a single line from &ldquo;primitive&rdquo; to &ldquo;advanced.&rdquo;</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Morrison treat the Enlightenment as a precondition for social theory existing at all, not just background color?</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 1 &middot; Marx</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 9/4</span><span class="cite">Dillon Ch.&nbsp;1: Key Concepts through Material and Social Existence Intertwined</span></summary>
+            <div class="rd-body">
+            <p class="lede">This is Marx&rsquo;s opening theoretical claim, and everything else in the chapter builds on it. Marx argues material conditions &mdash; how a society organizes the production of food, shelter, and goods &mdash; determine social existence (our relationships, institutions, even our ideas), not the reverse. This directly inverts Hegel, for whom historical change was driven by the unfolding of ideas. Marx&rsquo;s version is often summarized as &ldquo;it&rsquo;s not consciousness that determines life, but life that determines consciousness.&rdquo; Practically: if you want to explain why a society has the family structures, laws, or dominant beliefs it has, Marx says start by looking at how that society produces its livelihood &mdash; who owns what, who works for whom &mdash; not at the ideas people happen to hold. Keep the identity-box exercise in mind: it&rsquo;s meant to get you thinking concretely about how material objects in your own life shape your social identity &mdash; the same logic, just scaled down from a whole society to one person.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Material existence:</strong> the concrete economic/productive conditions of a society &mdash; how goods and livelihoods get produced.</div>
+              <div class="rd-term"><strong>Social existence:</strong> the relationships, institutions, and consciousness Marx argues are shaped by material existence.</div>
+              <div class="rd-term"><strong>Dialectical materialism:</strong> Marx&rsquo;s method &mdash; historical change driven by material/economic contradictions, not the unfolding of ideas.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> In your own words, would Marx explain a society&rsquo;s laws by starting from ideas or starting from production? Why?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 9/7</span><span class="cite">Dillon Ch.&nbsp;1: Capitalism as a Distinctive Social Form through Exchange Value/Use Value gap</span></summary>
+            <div class="rd-body">
+            <p class="lede">Marx pauses on a question that sounds almost too basic: what actually makes capitalism different from feudalism or slavery? His answer: capitalism is organized around the ceaseless accumulation of capital for its own sake &mdash; production isn&rsquo;t ultimately about meeting needs, it&rsquo;s about generating profit that gets reinvested to generate more profit, in an open-ended cycle. Critically, the relationship between capitalist and worker is purely economic: no customary, religious, or personal obligation binds them the way a feudal lord was (at least nominally) obligated to his serfs. This section also introduces use-value (what a thing is actually useful for) vs. exchange-value (what it can be sold for) &mdash; a distinction that looks small here but becomes the engine of the commodity fetishism argument later in the chapter, so lock it in now.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Use-value:</strong> what a good is actually useful for (a coat keeps you warm).</div>
+              <div class="rd-term"><strong>Exchange-value:</strong> what a good can be traded or sold for in the market (a coat&rsquo;s price tag).</div>
+              <div class="rd-term"><strong>Ceaseless accumulation:</strong> capitalism&rsquo;s defining drive to reinvest profit into more profit, with no natural stopping point.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Marx say the capitalist/worker relationship has &ldquo;no non-economic ties,&rdquo; and why does that matter for defining capitalism as historically distinctive?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/9</span><span class="cite">Dillon Ch.&nbsp;1: Division of Labor and Alienation through end of Marx chapter</span></summary>
+            <div class="rd-body">
+            <p class="lede">Probably the single most testable reading of the unit. Start from the division of labor: under capitalism, production gets broken into narrow, specialized tasks, so no one worker makes a whole product start to finish. Marx argues this fragmentation produces alienation &mdash; estrangement &mdash; along four distinct axes: workers become alienated from the products they make (owned and sold by someone else), from the act of production itself (labor becomes forced and exhausting rather than self-expression), from their own &ldquo;species being&rdquo; (the free, creative capacity Marx thinks defines humanity), and from other workers (competing for jobs and wages instead of cooperating). Have one concrete, specific example ready for each of the four types before class &mdash; you&rsquo;ll likely be asked to apply this, not just define it.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Alienation:</strong> an unnatural, broken relationship between things that should be connected &mdash; worker/product, worker/labor, worker/self, worker/other workers.</div>
+              <div class="rd-term"><strong>Species being:</strong> for Marx, the free, creative capacity to imagine and make things (not just survive) that he sees as distinctly human.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Pick one of the four types of alienation and describe a concrete, modern example of it.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 9/11</span><span class="cite">Lemert: Marx &amp; Engels, &ldquo;The Manifesto of Class Struggle&rdquo; excerpt</span></summary>
+            <div class="rd-body">
+            <p class="lede">This primary-source excerpt puts Marx and Engels&rsquo;s most quoted line directly in front of you: &ldquo;the history of all hitherto existing societies is the history of class struggles.&rdquo; Read it as the political payoff of 9/4&ndash;9/9 &mdash; if material conditions and class position shape consciousness, then history itself, for Marx, is the story of two classes locked in an ongoing struggle over who controls the means of production: the bourgeoisie (owners) and the proletariat (wage-workers). What sets this excerpt apart from the more analytical Dillon chapter is its tone &mdash; a call to recognition and action, not just description &mdash; and its argument that industrialization is actively sharpening this conflict by concentrating workers together and stripping away the messier class distinctions of earlier eras (guild masters, small landowners) into one central antagonism.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Bourgeoisie:</strong> the class that owns the means of production (factories, capital).</div>
+              <div class="rd-term"><strong>Proletariat:</strong> the class that must sell its labor for wages to survive.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> According to Marx and Engels, why does industrial capitalism simplify class conflict into two camps rather than many?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 9/14</span><span class="cite">Marx application: 3 NYT-style articles (wages/wealth, AI &amp; productivity, cost of being poor)</span></summary>
+            <div class="rd-body">
+            <p class="lede"><strong>Reading notes due before class.</strong> No new theory to prep &mdash; instead, come with each article already paired to a specific Marx concept, not just &ldquo;this is about inequality.&rdquo; Is the wages/wealth article really about surplus value (workers producing more value than they&rsquo;re paid)? Is the AI/productivity piece about alienation (technology further fragmenting or replacing human labor)? Is the cost-of-poverty article about false consciousness (systemic causes read as individual failure)? A strong application names the mechanism, not just the theme.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> For each of the three articles, name one specific Marx concept (not just &ldquo;inequality&rdquo;) that explains what&rsquo;s happening in it.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 2 &middot; Durkheim</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/16</span><span class="cite">Dillon Ch.&nbsp;2: Key Concepts through Methodological Rules</span></summary>
+            <div class="rd-body">
+            <p class="lede">Durkheim opens by defining sociology&rsquo;s actual object of study: social facts &mdash; ways of acting, thinking, and feeling that exist outside any one individual, are spread generally across a society, and exert a real, coercive pull on behavior whether or not any given person notices it. Language is the textbook example: you didn&rsquo;t invent English, it existed before you and shapes what you can even think and say, yet it doesn&rsquo;t feel like an external force pressing on you day to day. The methodological rule that follows was genuinely radical for its time: study social facts as things &mdash; objectively, through observation and comparison, the way a natural scientist studies matter &mdash; and explain a social fact only by other social facts, never by an individual&rsquo;s private psychology. This is Durkheim&rsquo;s founding gesture toward functionalism, and it puts him in direct tension with Marx&rsquo;s more conflict-driven method &mdash; Durkheim is much more interested in what keeps a society functioning than in what&rsquo;s tearing it apart.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Social fact:</strong> a way of acting/thinking/feeling that is external to any one individual, widespread across society, and coercive.</div>
+              <div class="rd-term"><strong>Positivism:</strong> studying social life objectively, through observation and classification, the way natural sciences study the physical world.</div>
+              <div class="rd-term"><strong>&ldquo;Explain social facts with social facts&rdquo;:</strong> Durkheim&rsquo;s rule that the cause of a social pattern must be another social pattern, not individual psychology.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why would Durkheim say a psychological explanation for suicide rates (&ldquo;sad people kill themselves&rdquo;) is a methodological mistake?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 9/18</span><span class="cite">Dillon Ch.&nbsp;2: The Nature of Society through Modern Society</span></summary>
+            <div class="rd-body">
+            <p class="lede">With ground rules set, Durkheim asks the question the unit is really about: what holds a society together, and does that change as societies modernize? In small, homogeneous, traditional societies, people are held together by mechanical solidarity &mdash; a shared collective conscience, meaning nearly everyone believes the same things and does similar work, so cohesion comes from sameness. As societies industrialize and the division of labor deepens, Durkheim argues a different bond takes over: organic solidarity, where people are held together precisely because they&rsquo;re different from each other and depend on one another&rsquo;s specialized functions &mdash; the way organs in a body depend on each other despite doing very different jobs. Notice this is effectively a rebuttal of the idea that specialization is only alienating (Marx&rsquo;s reading from 9/9): for Durkheim, the same division of labor can also be what makes a complex modern society cohere at all.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Mechanical solidarity:</strong> social cohesion based on shared beliefs and similarity, typical of small traditional societies.</div>
+              <div class="rd-term"><strong>Organic solidarity:</strong> social cohesion based on interdependence between differentiated, specialized roles, typical of modern societies.</div>
+              <div class="rd-term"><strong>Collective conscience:</strong> the shared set of beliefs and sentiments common to members of a society.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Contrast how Durkheim and Marx would each evaluate the division of labor &mdash; a source of cohesion, or a source of alienation &mdash; and why.</p>
+            <div class="rd-terms">
+              <div class="rd-term" style="color:var(--accent); font-weight:600;">Actual guided questions for this class:</div>
+            </div>
+            <blockquote class="pull">&ldquo;The totality of beliefs and sentiments common to the average members of a society forms a determinate system with a life of its own. It can be termed the collective or common consciousness [conscience] &hellip; By definition it is diffused over society as a whole &hellip; it is independent of the particular conditions in which individuals find themselves. Individuals pass on, but it abides &hellip; [and] links successive generations to one another.&rdquo;<cite>Division of Labor in Society 38&ndash;39, cited in Dillon 88</cite></blockquote>
+            <div class="qa">
+              <div class="qa-item">
+                <div class="q">Pick a passage from &ldquo;The Nature of Society&rdquo; (pp. 83&ndash;84) &mdash; what is Durkheim explaining, and what&rsquo;s the role of a society&rsquo;s moral system?</div>
+                <div class="a">Generally, that society is a reality <em>sui generis</em> &mdash; a thing in its own right, not just the sum of individuals &mdash; that exercises real, external influence over its members. The exact point depends on the paragraph picked: society constraining behavior through shared norms, the collective&rsquo;s moral authority over the individual, or individuals being <em>formed by</em> society rather than the reverse. A society&rsquo;s moral system, for Durkheim, is functional: it regulates individual behavior, binds people to the group, and creates the shared meaning that makes coordinated social life possible.</div>
+              </div>
+              <div class="qa-item">
+                <div class="q">What central concept is being described in the quoted passage above?</div>
+                <div class="a">The collective conscience &mdash; the shared totality of beliefs/sentiments common across a society, with &ldquo;a life of its own,&rdquo; diffused across society (not located in any one person), and persisting across generations. A textbook social fact, and the foundation of mechanical solidarity.</div>
+              </div>
+              <div class="qa-item">
+                <div class="q">What does Durkheim mean by solidarity, and how does it differ in traditional vs. modern societies?</div>
+                <div class="a">The bond of cohesion holding a society together. Traditional societies: <strong>mechanical solidarity</strong> &mdash; held together by likeness (shared beliefs/work), repressive law for violations. Modern societies: <strong>organic solidarity</strong> &mdash; held together by interdependence between differentiated, specialized roles, restitutive law instead. His answer to &ldquo;what holds modern society together without one shared belief system&rdquo;: interdependence itself.</div>
+              </div>
+            </div>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 9/21</span><span class="cite">Dillon Ch.&nbsp;2: Social Conditions of Suicide through end of chapter</span> <span class="rd-flag">(content warning: suicide)</span></summary>
+            <div class="rd-body">
+            <p class="lede">Durkheim&rsquo;s suicide study makes his methodology concrete: he picks something that looks like the most private, individual act imaginable and shows that even suicide rates follow stable social patterns explainable only by social facts. He organizes causes along two independent axes &mdash; integration (how strongly attached individuals are to social groups) and regulation (how much a society&rsquo;s norms constrain individual desires) &mdash; and identifies four types accordingly. Egoistic suicide comes from too little integration (someone cut off from group bonds). Altruistic suicide comes from too much integration (the group&rsquo;s demands override individual survival instinct, as in some forms of self-sacrifice). Anomic suicide comes from too little regulation, often triggered by sudden disruption (economic crash or boom) that leaves norms unmoored. Fatalistic suicide comes from too much regulation &mdash; oppressive, inescapable constraint. Going in, be able to sort a scenario into one of these four boxes, not just recite the names.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Integration:</strong> how strongly an individual is attached to and bound into a social group.</div>
+              <div class="rd-term"><strong>Regulation:</strong> how much a society&rsquo;s norms and expectations constrain individual desires.</div>
+              <div class="rd-term"><strong>Anomie:</strong> a state of normlessness, typically following sudden social disruption, where old rules no longer clearly apply.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Sort each of the four suicide types by which axis (integration or regulation) is too high vs. too low.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/23</span><span class="cite">Unit 2: Durkheim application/digestion</span> <span class="rd-flag">(content warning: school shootings)</span></summary>
+            <div class="rd-body">
+            <p class="lede"><strong>The actual assignment:</strong> choose one of two articles, &ldquo;Worry Less About Crumbling Roads, More About Crumbling Libraries&rdquo; by Eric Klinenberg, or &ldquo;Tight Knit Communities a Factor in Many Shootings, IU Sociologist Says&rdquo; by Mike Leonard. For your reading notes, write 200 to 300 words about how the article does, or does not, support some of Durkheim&rsquo;s key ideas. You need to use at least three key concepts from the Durkheim chapter, not just name them, actually apply them to what happens in the article.</p>
+            <p class="lede">If you go with the tight-knit-communities article: it covers IU sociologist Bernice Pescosolido&rsquo;s research on the social side of mass shootings, including the idea that isolation and disconnection from a community are a major risk factor, and that assumptions about &ldquo;close knit equals safe&rdquo; do not always hold up. Good concepts to reach for: integration (how connected someone is to their social group), the egoistic vs altruistic suicide framework (too little vs too much integration), and anomie (weak or unclear norms). You can also push back on the article a little, for example asking whether it is really about integration itself or about something else, like stigma or how a community responds once trouble starts.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> which of Durkheim&rsquo;s concepts (integration, regulation, anomie, egoistic or altruistic suicide, collective conscience) fits your article best, and why?</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 3 &middot; Weber</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 9/25</span><span class="cite">Dillon Ch.&nbsp;3: Key Concepts through Protestant-Western Individualism</span></summary>
+            <div class="rd-body">
+            <p class="lede">Weber opens by explicitly refusing the single master-cause explanations Marx and Durkheim each offer. Where Marx says &ldquo;follow the economy&rdquo; and Durkheim says &ldquo;look for the social fact,&rdquo; Weber argues social life is multi-causal &mdash; ideas, culture, and meaning can be just as causally important as material conditions, and each case has to be investigated rather than assumed in advance. His method for doing that is Verstehen (interpretive understanding) &mdash; sociology has to grasp the subjective meaning actors themselves attach to their action, not just observe behavior from outside. This sets up his most famous historical argument: the Protestant Ethic thesis, where Calvinist anxiety over predestination (not knowing if you were one of the saved) pushed believers toward disciplined, methodical, worldly labor as an unintended way of reassuring themselves of their own salvation &mdash; and that this religiously-motivated discipline is part of what made modern, rationalized Western capitalism possible in the first place. Notice how sharply this cuts against Marx: here, an idea (a religious belief) does real causal work in shaping an economic system, not just reflecting it.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Verstehen:</strong> interpretive understanding &mdash; grasping the subjective meaning behind an actor&rsquo;s behavior, not just observing it from outside.</div>
+              <div class="rd-term"><strong>Protestant Ethic thesis:</strong> Weber&rsquo;s argument that Calvinist religious anxiety indirectly produced the disciplined, ascetic behavior that helped give rise to modern capitalism.</div>
+              <div class="rd-term"><strong>Multi-causality:</strong> Weber&rsquo;s stance that no single factor automatically explains social outcomes; causes must be investigated case by case.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> How does the Protestant Ethic thesis challenge Marx&rsquo;s claim that ideas are simply shaped by material/economic conditions, rather than shaping them?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 9/28</span><span class="cite">Theorist Script #1 due</span> <span class="rd-flag">(no class today)</span></summary>
+            <div class="rd-body">
+            <p class="lede">No new reading, and no class meeting today, but Theorist Script #1 is still due. Submit it by whatever method your professor specified (Moodle or Slack) since there&rsquo;s no in-person class to hand it in at. If you have spare prep time, use it to skim back over Marx and Durkheim, since Exam #1 (covering all three of Marx, Durkheim, and Weber) is just over a week out.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/30</span><span class="cite">Dillon Ch.&nbsp;3: Ideal Types through end of Social Action section</span></summary>
+            <div class="rd-body">
+            <p class="lede">This gives you Weber&rsquo;s core methodological tool: the ideal type, a deliberately simplified, exaggerated conceptual model (&ldquo;pure bureaucracy,&rdquo; &ldquo;pure charismatic authority&rdquo;) built by emphasizing certain features to make comparison possible &mdash; explicitly not meant to describe any real case perfectly, just to give a fixed point to measure real cases against. From there, Weber defines his basic unit of analysis, social action: behavior only counts as social action when the actor attaches subjective meaning to it and orients it toward other people. This is a direct methodological contrast with Durkheim, who told you to explain social facts by other social facts and treat individual meaning as irrelevant &mdash; Weber flips that, insisting you can&rsquo;t understand social life without reconstructing what it means to the people doing it. If Dillon covers the four types of social action (traditional/habit, affectual/emotional, value-rational, instrumental-rational), be ready to sort examples into each.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Ideal type:</strong> a deliberately simplified, exaggerated model used as a fixed point of comparison, not a literal description of reality.</div>
+              <div class="rd-term"><strong>Social action:</strong> behavior an actor invests with subjective meaning and orients toward other people &mdash; Weber&rsquo;s basic unit of sociological analysis.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> In one sentence, how does Weber&rsquo;s approach to explaining behavior differ from Durkheim&rsquo;s &ldquo;explain social facts with social facts&rdquo; rule?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 10/2</span><span class="cite">Dillon Ch.&nbsp;3: Power, Authority and Domination through end of Weber chapter</span></summary>
+            <div class="rd-body">
+            <p class="lede">Weber distinguishes power (the raw ability to make someone do something, even against resistance) from authority/domination (power accepted as legitimate). He identifies three ideal-typical sources of legitimate authority: traditional authority, resting on the sanctity of custom and inherited status (a monarch, a tribal elder); charismatic authority, resting on the extraordinary personal qualities attributed to a leader (a revolutionary figure, a cult leader, arguably some modern political figures); and legal-rational authority, resting on a system of impersonal rules and offices rather than the person who holds them (a bureaucrat, a judge, a modern state official). The chapter closes on Weber&rsquo;s famous, fairly pessimistic warning about where legal-rational authority tends to lead: rationalization, the ever-expanding reach of calculation and bureaucratic rules into every corner of life, which Weber worried could trap modern people in an &ldquo;iron cage&rdquo; &mdash; a highly efficient system stripped of the meaning and mystery older forms of authority carried.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Traditional authority:</strong> legitimacy based on custom and inherited status.</div>
+              <div class="rd-term"><strong>Charismatic authority:</strong> legitimacy based on a leader&rsquo;s extraordinary personal qualities.</div>
+              <div class="rd-term"><strong>Legal-rational authority:</strong> legitimacy based on impersonal rules and offices, not the individual who holds them.</div>
+              <div class="rd-term"><strong>Iron cage:</strong> Weber&rsquo;s metaphor for how rationalization can trap modern life in efficient but meaningless bureaucratic systems.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Give one real-world example each of traditional, charismatic, and legal-rational authority.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 10/5</span><span class="cite">Application/digestion: Weber guided questions</span></summary>
+            <div class="rd-body">
+            <p class="lede">No new reading &mdash; actively apply, not just recall, the toolkit from the past two weeks. Pick a real institution or leader and identify which type(s) of authority it draws on, and whether you can see rationalization/the iron cage at work in it (a workplace that&rsquo;s become all metrics and process, for instance). Good prep for discussion and directly for Exam #1, two classes away.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 10/7</span><span class="cite">Exam #1 (in class)</span></summary>
+            <div class="rd-body">
+            <p class="lede">No reading. Covers Marx, Durkheim, and Weber &mdash; expect definitions, applications to short scenarios, and likely a compare-the-theorists question (how would Marx vs. Durkheim vs. Weber each explain a given social pattern?). Also turn in reading notes on Moodle today.</p>
+            </div>
+          </details>
+
+          <p class="rd-off">Fri 10/9 &mdash; No class (October Break)</p>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 4 &middot; Du Bois &rarr; Black Feminist Thought</h3>
+
+          <p class="rd-off">Mon 10/12 &mdash; No class (October Break)</p>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 10/14</span><span class="cite">Dillon Intro: Du Bois, Slavery/Racial Inequality through Racial and Gender Inequality + Morris, &ldquo;Du Bois at the center&rdquo; (2017)</span></summary>
+            <div class="rd-body">
+            <p class="lede">This reading does two things at once: introduces Du Bois&rsquo;s own concepts, and argues about why he was excluded from the sociological canon in the first place. W.E.B. Du Bois was a contemporary of Durkheim and Weber doing rigorous empirical sociology (his study of Black life in Philadelphia predates much of what&rsquo;s considered &ldquo;founding&rdquo; sociology), yet was left out of standard theory sequences for decades &mdash; largely, Morris argues, because of the discipline&rsquo;s racism, not because the work was less rigorous. Du Bois&rsquo;s core contribution here is double consciousness: the experience of always seeing yourself both through your own eyes and through the eyes of a white-dominated society that racializes and devalues you &mdash; a split, doubled self-awareness white Americans of the era did not have to navigate. Related is &ldquo;the veil&rdquo; &mdash; a metaphor for the barrier of racial separation and misrecognition structuring Black life in America, which cuts Black Americans off from full participation while also giving them, per Du Bois, a distinctive, clarifying vantage point precisely because they stand partly outside it.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Double consciousness:</strong> Du Bois&rsquo;s concept for the split self-awareness of seeing oneself both through one&rsquo;s own eyes and through the eyes of a racist society.</div>
+              <div class="rd-term"><strong>The veil:</strong> Du Bois&rsquo;s metaphor for the barrier of racial separation/misrecognition structuring Black life in America.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Morris argue Du Bois&rsquo;s exclusion from the sociological canon was a political/disciplinary failure, not a reflection of the quality of his work?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 10/16</span><span class="cite">Lemert: Du Bois, &ldquo;Black Reconstruction and the Racial Wage&rdquo; excerpt + McGhee, The Sum of Us excerpt</span></summary>
+            <div class="rd-body">
+            <p class="lede">Du Bois complicates Marx&rsquo;s clean two-class model by showing how race cuts across class in a way pure economic analysis misses. His concept of the &ldquo;wages of whiteness&rdquo; (or &ldquo;public and psychological wage&rdquo;) argues that white workers in the post-Civil War U.S. accepted material conditions arguably against their own class interests, in exchange for a non-material payoff: public deference, access to public space and institutions, and racial status above Black workers &mdash; a payoff that helped prevent a cross-race labor coalition that might otherwise have had more collective bargaining power. McGhee&rsquo;s excerpt, writing much more recently, extends this into the present, arguing against a &ldquo;zero-sum&rdquo; story where racial progress for one group must come at another&rsquo;s expense &mdash; she makes the case that the racial wage has costs for white Americans too (her signature metaphor: draining public pools rather than integrating them, applied to underfunded shared public goods generally).</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Wages of whiteness / racial wage:</strong> Du Bois&rsquo;s concept for the non-material, status-based payoff white workers received for racial position, which undercut cross-race class solidarity.</div>
+              <div class="rd-term"><strong>Zero-sum framing:</strong> the (McGhee-critiqued) assumption that one group&rsquo;s gain must be another group&rsquo;s loss.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> How does Du Bois&rsquo;s &ldquo;wages of whiteness&rdquo; concept complicate Marx&rsquo;s two-class (bourgeoisie/proletariat) model?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 10/19</span><span class="cite">Dillon Ch.&nbsp;10: Standpoint Theory &mdash; Dorothy Smith and the Relations of Ruling</span></summary>
+            <div class="rd-body">
+            <p class="lede">Standpoint theory makes a claim about knowledge itself: where you&rsquo;re socially positioned shapes what you&rsquo;re able to see and know, meaning knowledge is always situated, never from nowhere. Dorothy Smith develops this around gendered, everyday, often invisible labor (domestic work, caregiving) and argues mainstream sociology had been built from the standpoint of men in ruling positions, which made whole dimensions of social life disappear from view. Her key concept, relations of ruling, names the abstract, textually-mediated forms of coordination and control &mdash; bureaucracies, policies, official documents, institutional categories &mdash; that organize people&rsquo;s everyday lives from outside and above them, often without those doing the organizing ever directly experiencing the everyday consequences. Smith&rsquo;s method calls for starting sociological inquiry from people&rsquo;s actual, concrete everyday experience (&ldquo;the everyday world as problematic&rdquo;) and tracing outward to how it connects to larger institutional relations, rather than starting from abstract theory and working down.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Standpoint theory:</strong> the claim that knowledge is situated &mdash; shaped by one&rsquo;s position in social relations &mdash; rather than neutral or view-from-nowhere.</div>
+              <div class="rd-term"><strong>Relations of ruling:</strong> Smith&rsquo;s term for the abstract, institutional/textual forms of power that organize everyday life from outside it.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> How does Smith&rsquo;s method (starting from everyday experience) differ from a more traditional top-down theoretical approach?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 10/21</span><span class="cite">Dillon Ch.&nbsp;10: Patricia Hill Collins, Black Women&rsquo;s Standpoint + Mike Mena, &ldquo;Controlling Images&rdquo; video</span></summary>
+            <div class="rd-body">
+            <p class="lede">Collins runs standpoint theory through the intersection of race, gender, and class simultaneously, arguing Black women occupy a distinctive standpoint shaped by all three at once &mdash; not race plus gender as separate, additive burdens, but a qualitatively different position producing its own form of knowledge (this is the root of what later gets called intersectionality, and connects to Collins&rsquo;s broader concept of the matrix of domination, where multiple systems of oppression interlock). The video gives you the cultural-mechanism half of the argument: stereotypes like the mammy, the jezebel, and the welfare queen aren&rsquo;t random &mdash; Collins argues they function specifically to naturalize and justify Black women&rsquo;s oppression by making it seem like a product of their own character rather than a structural arrangement. Watch for how controlling images work by being repeated so often across media and culture that they come to feel like common sense rather than constructed narratives.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Intersectionality / matrix of domination:</strong> the idea that race, gender, class, etc. interlock to produce distinctive forms of oppression and standpoint, not simply additive ones.</div>
+              <div class="rd-term"><strong>Controlling images:</strong> stereotyped cultural representations that naturalize and justify a group&rsquo;s subordination.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Pick one controlling image from the video and explain, in Collins&rsquo;s terms, what social function it serves.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 10/23</span><span class="cite">Application/digestion guided questions</span></summary>
+            <div class="rd-body">
+            <p class="lede"><strong>Reading notes due in class.</strong> Synthesis day for the whole Du Bois &rarr; Black feminist thought arc &mdash; come ready to connect double consciousness/the veil, the wages of whiteness, relations of ruling, and controlling images to each other, not just recall them individually. A useful prep exercise: pick one contemporary example and see how many of these four concepts illuminate different angles of it.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Choose one current event or personal observation and explain it using at least two concepts from this unit.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 5 &middot; Symbolic Interactionism</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 10/26</span><span class="cite">Dillon Ch.&nbsp;8: Development of the Self through Social Interaction, through end of Social Context</span></summary>
+            <div class="rd-body">
+            <p class="lede">The unit pivots sharply in scale &mdash; from big historical/structural forces down to the moment-to-moment work of face-to-face interaction. The foundational claim of symbolic interactionism is that the self isn&rsquo;t simply given at birth; it&rsquo;s built through interaction with others, specifically by learning to see yourself from other people&rsquo;s point of view. Expect groundwork from the Cooley/Mead tradition: Cooley&rsquo;s &ldquo;looking-glass self&rdquo; (we form our self-concept partly by imagining how others perceive and judge us) and Mead&rsquo;s &ldquo;generalized other&rdquo; (the internalized sense of a whole community&rsquo;s expectations, letting us anticipate how &ldquo;people in general,&rdquo; not just one specific person, would react). This is a genuinely different starting point than anything covered so far &mdash; Marx starts from economic structure, Durkheim from social facts, Weber from meaningful action, and symbolic interactionism starts from the ongoing, interactive construction of selfhood itself.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Looking-glass self:</strong> the idea that we form our self-concept partly by imagining how others perceive and judge us.</div>
+              <div class="rd-term"><strong>Generalized other:</strong> the internalized sense of a whole community&rsquo;s norms and expectations, letting us anticipate general social reactions, not just one person&rsquo;s.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> How is the symbolic interactionist starting point (the self as built through interaction) different from Durkheim&rsquo;s starting point (the individual shaped by external social facts)?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 10/28</span><span class="cite">Dillon Ch.&nbsp;8: Goffman, Society as Ritualized Social Interaction through end of chapter</span></summary>
+            <div class="rd-body">
+            <p class="lede">Goffman gives symbolic interactionism its most famous, most testable framework: dramaturgy, the idea that social life works like theater. In any interaction, people perform a version of themselves for an audience, managing the impression others form of them &mdash; impression management. Goffman splits social space into front stage (where the performance happens, under observation, following the &ldquo;script&rdquo; appropriate to the setting) and back stage (where people can drop the performance &mdash; a server&rsquo;s demeanor on the restaurant floor versus in the kitchen). He also introduces face-work: the small, constant efforts people make to maintain their own and others&rsquo; &ldquo;face&rdquo; (public self-image) during interaction &mdash; a compliment, a polite laugh, an apology &mdash; which Goffman treats as an interaction ritual keeping everyday social order running, almost like a secular version of religious ritual.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Dramaturgy:</strong> Goffman&rsquo;s framework treating social interaction as a theatrical performance.</div>
+              <div class="rd-term"><strong>Front stage / back stage:</strong> the public, performed region of interaction vs. the private region where the performance drops.</div>
+              <div class="rd-term"><strong>Impression management:</strong> the effort people put into controlling how others perceive them.</div>
+              <div class="rd-term"><strong>Face-work:</strong> the small ritual acts people use to maintain their own and others&rsquo; public self-image.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Describe a front-stage/back-stage contrast from your own life and one piece of face-work you regularly do.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 10/30</span><span class="cite">Stanford Prison Experiment video (45 min)</span></summary>
+            <div class="rd-body">
+            <p class="lede">No new text &mdash; this is Zimbardo&rsquo;s famous 1971 study, where college students randomly assigned to &ldquo;guard&rdquo; or &ldquo;prisoner&rdquo; roles in a simulated prison escalated disturbingly quickly into abusive and traumatized behavior, seemingly driven by the situation and role itself rather than anything unusual about the individuals involved. Watch it with Goffman fresh in mind: it&rsquo;s often read as an extreme, real-world illustration of how powerfully a &ldquo;stage&rdquo; and an assigned script can shape behavior, almost independent of who the specific performer is. Come to class also aware the study has been heavily criticized since &mdash; experimenter influence/coaching of the &ldquo;guards,&rdquo; self-selection in who volunteered, and broader questions about whether it really shows what it claims to. Holding both the vivid illustration and the methodological critique at once is exactly the kind of thinking this class rewards.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> What does the experiment seem to demonstrate about situational vs. dispositional explanations of behavior, and what&rsquo;s the strongest critique of that conclusion?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 11/2</span><span class="cite">Goffman, Stigma excerpt</span></summary>
+            <div class="rd-body">
+            <p class="lede">Goffman turns from ordinary impression management to what happens when it fails or is foreclosed by a trait others treat as discrediting. Stigma is his term for an attribute &mdash; physical (a visible disability), a matter of individual character (a criminal record, mental illness), or tribal/group-based (race, religion, nationality) &mdash; that reduces someone, in others&rsquo; eyes, from a whole, ordinary person to a &ldquo;spoiled,&rdquo; discounted one. He&rsquo;s especially interested in the practical strategies stigmatized individuals use to manage information about themselves: passing (concealing the stigma entirely, when possible), covering (not hiding it but minimizing its visibility or disruption), and disclosure (revealing it on one&rsquo;s own terms). This connects directly back to dramaturgy &mdash; stigma management is impression management under much higher stakes and much less control.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Stigma:</strong> an attribute that discredits someone, reducing them from a &ldquo;whole&rdquo; person to a devalued one in others&rsquo; eyes.</div>
+              <div class="rd-term"><strong>Spoiled identity:</strong> Goffman&rsquo;s term for an identity marked/discredited by stigma.</div>
+              <div class="rd-term"><strong>Passing / covering:</strong> concealing a stigma entirely, vs. minimizing its visibility while not fully hiding it.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Give an example of passing vs. covering, and explain the difference in what each strategy is trying to manage.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 11/4</span><span class="cite">AI &amp; social life + disability emojis articles</span></summary>
+            <div class="rd-body">
+            <p class="lede"><strong>Reading notes due in class.</strong> This application day likely asks you to extend Goffman into digital/technologically-mediated interaction: is a curated social media profile just a digital front stage? Does AI-generated content change what &ldquo;performance&rdquo; means when the performer might not be fully human? The disability-emoji piece likely connects to stigma management specifically &mdash; new symbolic tools as a way to disclose or normalize a trait that might otherwise be treated as discrediting, potentially shifting stigma toward more everyday visibility.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Pick either article and explain it using one specific Goffman concept (impression management, front/back stage, or stigma).</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 6 &middot; Sex, Bodies, Truth and Power</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 11/6</span><span class="cite">Dillon Ch.&nbsp;11 opening through Bio-Power + Foucault, Discipline and Punish pp.&nbsp;3&ndash;12 &amp; 200&ndash;204</span> <span class="rd-flag">(dense &mdash; budget extra time)</span></summary>
+            <div class="rd-body">
+            <p class="lede">A genuinely demanding reading, so plan real time for it. Foucault redefines what power even is: not a possession a ruler or class simply &ldquo;has&rdquo; and uses to repress people from above, but something diffuse, relational, and &mdash; crucially &mdash; productive: power doesn&rsquo;t just say &ldquo;no,&rdquo; it actively produces knowledge, identities, and norms. Discipline and Punish traces a shift from sovereign power (older, spectacular, often violent punishment aimed at the body, meant to publicly display the ruler&rsquo;s authority) to disciplinary power (modern, subtler control through surveillance, timetables, examination, and normalization &mdash; training people to regulate themselves). The reading&rsquo;s central image is the Panopticon, a prison design where inmates can be observed at any moment from a central tower but can never know when they&rsquo;re actually being watched &mdash; the genius (and horror) is that inmates start disciplining their own behavior just from the possibility of surveillance, so the &ldquo;guard&rdquo; becomes internal. Biopower extends this logic to whole populations: modern power increasingly operates by managing life itself &mdash; birth rates, health, sexuality, hygiene &mdash; rather than simply threatening death.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Sovereign power:</strong> older forms of power exercised through visible, often violent authority over life and death.</div>
+              <div class="rd-term"><strong>Disciplinary power:</strong> modern forms of power that work through surveillance, normalization, and training self-regulation.</div>
+              <div class="rd-term"><strong>Panopticon:</strong> Foucault&rsquo;s model of a prison designed so inmates internalize surveillance because they can never know if they&rsquo;re being watched.</div>
+              <div class="rd-term"><strong>Biopower:</strong> power exercised over populations through the management of life (health, birth, sexuality) rather than direct violence.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Using the Panopticon, explain why Foucault says disciplinary power doesn&rsquo;t need to watch you constantly to control you.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 11/9</span><span class="cite">Dillon Ch.&nbsp;11: Invention of Sexuality through Resisting/Reproducing Power</span></summary>
+            <div class="rd-body">
+            <p class="lede">Foucault takes direct aim at the &ldquo;repressive hypothesis&rdquo; &mdash; the common assumption that sexuality was simply silenced and taboo starting in the Victorian era. His counter-argument is almost the opposite: the modern era produced an explosion of discourse about sex &mdash; through medicine, psychiatry, education, confession, law &mdash; that categorized, named, and studied sexuality obsessively. For Foucault, this proliferation of expert discourse is itself a form of power: defining and classifying sexual types (inventing, for instance, &ldquo;the homosexual&rdquo; as a category of person, not just an act, in 19th-century medical/psychiatric discourse) is how modern power operates &mdash; through knowledge-production rather than simple prohibition. The chapter&rsquo;s final section pushes into how Foucault understands resistance: because power isn&rsquo;t a single thing held by one group but exercised through relations, resistance is always present within those same relations too &mdash; power and resistance reproduce each other rather than resistance simply standing outside and opposing power.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Repressive hypothesis:</strong> the (Foucault-critiqued) assumption that modern society simply silenced and repressed sexuality.</div>
+              <div class="rd-term"><strong>Discourse:</strong> Foucault&rsquo;s term for the organized bodies of knowledge/language (medical, legal) that define and categorize aspects of life like sexuality.</div>
+              <div class="rd-term"><strong>Power/resistance as relational:</strong> Foucault&rsquo;s claim that resistance exists within, not outside of, power relations.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Foucault say the &ldquo;repressive hypothesis&rdquo; gets the history of modern sexuality backwards?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 11/11</span><span class="cite">Reading TBD</span></summary>
+            <div class="rd-body">
+            <p class="lede"><strong>Theorist Script #2 due before class.</strong> Reading not finalized as of this tracker &mdash; check Slack/the live syllabus before class. Prioritize the script if reading time is tight.</p>
+            </div>
+          </details>
+
+          <p class="rd-off">Fri 11/13 &mdash; No new reading</p>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 11/16</span><span class="cite">Dillon Ch.&nbsp;11: Sex and Queer Theory through end of chapter</span></summary>
+            <div class="rd-body">
+            <p class="lede">Carries Foucault&rsquo;s framework &mdash; that categories we treat as natural are actually produced through discourse and regulated through power &mdash; into queer theory specifically. The core move: treat categories like &ldquo;heterosexual&rdquo;/&ldquo;homosexual,&rdquo; or even &ldquo;man&rdquo;/&ldquo;woman,&rdquo; not as timeless, natural facts about bodies, but as historically specific classifications that emerged through the same kind of medical, legal, and social discourse Foucault traced in the last reading. This matters for how the categories get used and enforced: if they&rsquo;re historically produced rather than natural, they&rsquo;re also, in principle, contestable and changeable &mdash; the opening queer theory builds on to question and destabilize rigid sexual/gender categories rather than simply seeking inclusion within them.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Social construction (of sexuality/gender):</strong> the idea that categories like &ldquo;heterosexual&rdquo; or &ldquo;man/woman&rdquo; are produced through historical, discursive processes rather than simply given by nature.</div>
+              <div class="rd-term"><strong>Queer theory:</strong> a body of theory (building on Foucault) that questions and destabilizes fixed sexual/gender categories.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> How does treating sexual/gender categories as &ldquo;socially constructed&rdquo; rather than natural change what kinds of political or theoretical questions become possible?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 11/18</span><span class="cite">&ldquo;Why the Fuss Over the DSM-5?&rdquo;</span></summary>
+            <div class="rd-body">
+            <p class="lede">A good, concrete test of whether you can use Foucault rather than just recite him. The DSM-5 (the psychiatric diagnostic manual) is a strong real-world case of disciplinary/biopower at work: it doesn&rsquo;t just describe pre-existing mental illnesses, it actively defines, through expert medical discourse, what counts as a disorder at all &mdash; which shapes who gets diagnosed, treated, medicated, institutionalized, or denied insurance coverage, and who counts as &ldquo;normal.&rdquo; Read the controversy through that lens: debates over adding or removing categories from the DSM aren&rsquo;t just clinical disagreements, they&rsquo;re fights over where the line of &ldquo;normal&rdquo; gets drawn, with real material consequences for the people on either side of it.</p>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> In Foucauldian terms, why is a debate over psychiatric diagnostic categories also a debate about power, not just medicine?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 11/20</span><span class="cite">Exam #2 (in class)</span></summary>
+            <div class="rd-body">
+            <p class="lede">No reading. Covers Du Bois through Foucault/queer theory (roughly Unit 4 through Unit 6). Also turn in reading notes on Moodle today.</p>
+            </div>
+          </details>
+
+          <p class="rd-off">Sat 11/21&ndash;Sun 11/29 &mdash; November Recess, no class</p>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Unit 7 &middot; Bourdieu</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Mon 11/30</span><span class="cite">Dillon Ch.&nbsp;13: Bourdieu, beginning through social stratification</span></summary>
+            <div class="rd-body">
+            <p class="lede">Bourdieu enters as an attempt to solve a problem that&rsquo;s been implicit all semester: do individuals freely choose their actions (as Weber&rsquo;s emphasis on subjective meaning might suggest), or are they simply products of external structures (as a more deterministic reading of Marx or Durkheim might suggest)? Bourdieu&rsquo;s answer is neither, exactly &mdash; he builds a framework meant to hold both at once. Habitus is his term for the deeply internalized dispositions, tastes, and ways of perceiving the world a person absorbs from their social position (especially class background) starting in childhood &mdash; durable enough to feel like natural instinct or personal taste, even though it&rsquo;s socially produced. Field is his term for a structured social arena (education, art, the economy) with its own internal rules, stakes, and forms of competition, within which people with different habitus and resources compete for position. Together, habitus and field let Bourdieu explain how social stratification reproduces itself without anyone consciously &ldquo;choosing&rdquo; to reproduce it &mdash; people act according to dispositions that feel natural, in arenas whose rules already favor those dispositions.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Habitus:</strong> internalized, durable dispositions and tastes shaped by one&rsquo;s social position, that feel like natural instinct.</div>
+              <div class="rd-term"><strong>Field:</strong> a structured social arena (education, art, economy) with its own rules and forms of competition.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Bourdieu&rsquo;s habitus/field framework avoid simply choosing between &ldquo;people freely choose their actions&rdquo; and &ldquo;structures fully determine behavior&rdquo;?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 12/2</span><span class="cite">Dillon Ch.&nbsp;13: Family/School in Production of Cultural Capital through &ldquo;I&rsquo;m First-Gen&rdquo; + Jack, The Privileged Poor intro</span></summary>
+            <div class="rd-body">
+            <p class="lede">Applies habitus/field directly to education and introduces cultural capital: the non-monetary assets &mdash; vocabulary, cultural knowledge, ways of speaking and presenting oneself, familiarity with &ldquo;legitimate&rdquo; culture (certain books, art, manners) &mdash; that get passed down within families and then rewarded, often without being named explicitly as a criterion, by schools. Because cultural capital is unevenly distributed by class background before a child ever sets foot in a classroom, schools that look formally neutral and meritocratic can still systematically reproduce existing inequality, treating what&rsquo;s really an inherited advantage as if it were individual talent or effort. The first-gen material and the Jack excerpt bring this into sharp, personal focus: elite institutions often assume a baseline of cultural capital (how to talk to a professor, navigate office hours, read unwritten academic norms) that first-generation and lower-income students haven&rsquo;t had the same chance to absorb, which can make objectively excellent institutions feel alienating or unfair in ways that aren&rsquo;t really about ability at all.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Cultural capital:</strong> non-monetary assets (knowledge, taste, manners, credentials) that confer social advantage, especially by being rewarded in institutions like schools.</div>
+              <div class="rd-term"><strong>Reproduction (of inequality):</strong> the process by which schools, despite appearing neutral, tend to reward pre-existing class-based cultural capital, reinforcing rather than leveling inequality.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Give a concrete example of &ldquo;cultural capital&rdquo; a school might reward without ever naming it as a formal grading criterion.</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 12/4</span><span class="cite">Dillon Ch.&nbsp;13: Taste and Everyday Practices through end of chapter</span></summary>
+            <div class="rd-body">
+            <p class="lede">Bourdieu closes the chapter by extending the same logic to something that feels intensely personal: taste. His broader argument (developed at length in his book Distinction) is that aesthetic preferences &mdash; in food, music, art, even how you decorate a room &mdash; aren&rsquo;t neutral, individual expressions of &ldquo;just liking what you like.&rdquo; They&rsquo;re patterned by class position, and they function as a form of symbolic capital: a way of signaling and reinforcing social position through what you consume and how you talk about it (a preference for &ldquo;refined&rdquo; over &ldquo;vulgar&rdquo; taste isn&rsquo;t natural &mdash; it&rsquo;s a socially learned distinction that happens to track class lines). This is Bourdieu&rsquo;s most direct challenge to the idea of taste as innocent: he wants you to see even your own aesthetic preferences as, at least partly, a product of your habitus.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Symbolic capital:</strong> prestige or recognition that functions as a resource, often converted from other forms of capital.</div>
+              <div class="rd-term"><strong>Distinction:</strong> Bourdieu&rsquo;s term for how aesthetic taste functions to mark and reinforce social/class boundaries.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Pick a taste or preference of your own (music, food, style) and consider, in Bourdieu&rsquo;s terms, how your class background or upbringing might have shaped it.</p>
+            </div>
+          </details>
+
+          <p class="rd-off">Mon 12/7 &mdash; No new reading; discussion question on Bourdieu</p>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 12/9</span><span class="cite">Bourdieu application/digestion guided questions</span></summary>
+            <div class="rd-body">
+            <p class="lede">No new reading &mdash; actively apply habitus, field, cultural capital, and symbolic capital/distinction to a case of your choosing (your own educational path, a hobby community, a professional field) ahead of the final reading notes deadline. Good moment, too, to compare Bourdieu to earlier theorists &mdash; how does his account of reproduction compare to Du Bois/Collins&rsquo;s accounts of race- and gender-based reproduction of inequality, or to Marx&rsquo;s account of class reproduction?</p>
+            </div>
+          </details>
+
+          <p class="rd-off">Fri 12/11 &mdash; Final reading notes due on Moodle by 5pm (no new reading)</p>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Finals</h3>
+          <p class="rd-off">Final assignment (theorist script incl. Bourdieu, or cumulative exam) due/taken at the Registrar-set final exam time &mdash; no new reading. If choosing the theorist script, plan which three theorists you can write most confidently about (one must be Bourdieu); if choosing the cumulative exam, budget review time across all seven units, not just the most recent ones.</p>
+        </div>
+      </section>
+
+      <!-- GETTING ORIENTED -->
+      <section class="pane" id="pane-orient">
+        <div class="pane-head"><h2>Getting Oriented</h2><span class="status-pill done">Covered</span></div>
+
+        <div class="block">
+          <span class="cite">Morrison &middot; &ldquo;Introduction&rdquo; to Formations of Modern Social Thought &middot; pp.1&ndash;end</span>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="q">What do we know about the approaches of Marx, Durkheim, and Weber? What do they hold in common and what differentiates them?</div>
+              <div class="a">All three had a lot in common but each had an individual approach that set him apart: Marx focused on economics, Durkheim on society and its transformations, Weber on individuality. Major changes were happening in society during their lifetimes, giving all three a shared goal &mdash; understanding how society was changing with the rise of modernity.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">Name and explain the three major developments of modernity Marx, Durkheim, and Weber are all responding to.</div>
+              <div class="a">Political, economic, and individualism &mdash; broken out in more depth below.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">What the three hold in common (lecture)</h3>
+          <ul class="list">
+            <li>&ldquo;Large-scale explanatory perspectives&rdquo; (Morrison 1995: 5) &mdash; often called <strong>meta-theories</strong>, since they aim to explain broad swaths of social life.</li>
+            <li>A <strong>comparative historical approach</strong>: examining different societies past and present, looking at economic, political, and social change, and seeking to identify the causes of social circumstances.</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">The three developments, in depth</h3>
+          <p class="lede"><strong>Political &mdash; impacts of the French Revolution.</strong> Feudalism had authorized strict hierarchies and mass subordination. The Revolution introduced a new understanding of political rights: people born free and equal (politically), and the creation of the &ldquo;citizen&rdquo; &mdash; a person whose rights are assured by the state.</p>
+          <p class="lede"><strong>Economic &mdash; transition to capitalism.</strong> The enclosure movement: rise of private property, a new system of exchange ($), and peasants forced off common land. Growth of towns and competition with rural/estate-based production. Declining power of guilds, which had restricted access to professions through apprenticeships and licenses. Result: &ldquo;a landless class whose labor was to be bought and sold in the emerging industrial centers&rdquo; (Morrison 1995: 12).</p>
+          <p class="lede"><strong>Rise of individualism.</strong> Historical developments shifted weight from the collective to the individual: the French Revolution reallocated political rights (once tied to estates/collectives) to individual persons; capitalism recast individuals as autonomous actors competing in a market unfettered by custom or social bonds. This raised anxieties for some thinkers &mdash; could unchecked individualism cause a failure of collective function, even social collapse? Others saw it as an advance: Adam Smith (<em>Wealth of Nations</em>) argued economic individualism is a net positive &mdash; as individuals pursue self-interest, the collective gains in material wealth.</p>
+          <p class="lede">These shifts came alongside a philosophical one: the <strong>Enlightenment</strong> (1700s), where religious revelation and traditional authority were replaced by logic, rationality, and skepticism as paths to truth &mdash; including <strong>evolutionism</strong>, the belief in linear progress (a framework troublingly also applied to a notion of human &ldquo;races&rdquo;). Social theory emerges out of the attempt to make sense of all three shifts at once.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Theorist quick-comparison</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th></th><th>Hegel</th><th>Marx</th><th>Durkheim</th><th>Weber</th></tr>
+              <tr>
+                <td>Core view</td>
+                <td>Thinks of history as social, with developmental stages; interested in the role of individual experience</td>
+                <td>Analysis based on economy; thinks in terms of broad historical laws &mdash; patterns that shape all historical development</td>
+                <td>Rejects universal historical laws for a <strong>positivist</strong> approach: observation, description, classification &mdash; society studied like a natural science</td>
+                <td>Believes in the influence of multiple social spheres; challenges studying social phenomena exactly like the natural sciences &mdash; &ldquo;social acts&rdquo; include inner states like values, judgments, meaning-making</td>
+              </tr>
+              <tr>
+                <td>School of thought</td>
+                <td>Idealism / dialectics</td>
+                <td>Conflict theory</td>
+                <td>Functionalism</td>
+                <td>Interpretive sociology</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNIT 1: MARX -->
+      <section class="pane" id="pane-marx" hidden>
+        <div class="pane-head"><h2>Unit 1 &middot; Marx</h2><span class="status-pill done">Covered</span></div>
+
+        <div class="block">
+          <h3 class="sub">Background &amp; influences</h3>
+          <p class="lede">Karl Marx (1818&ndash;1883): born German (before a unified Germany existed), middle-class, Jewish family. Abandoned middle-class life and lived in poverty &mdash; was an activist and journalist, not a professor.</p>
+          <p class="lede">Major intellectual influences: <strong>French political theory</strong> (the pursuit of political equality through the Revolution had led to increased economic inequality); <strong>English economic circumstances</strong> (England was the center of the Industrial Revolution and had the most advanced capitalist economy in the world &mdash; the working class lived in slums and poverty); <strong>German philosophy</strong>, especially Hegel.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Hegel&rsquo;s influence &mdash; and where Marx breaks from him</h3>
+          <p class="lede">Marx agrees history progresses through stages, each moving forward through a <strong>dialectic</strong> (a &ldquo;contradiction&rdquo;): thesis (new idea) &rarr; antithesis (backlash) &rarr; synthesis (resolution out of the messiness). Example: the French Revolution as thesis/antithesis/synthesis.</p>
+          <p class="lede">Marx disagrees with Hegel on <em>what drives</em> historical change. For Hegel, ideas drive history. Marx concluded it&rsquo;s not ideas but <strong>economic power</strong> (who controls resources) that drives it &mdash; this is <strong>dialectical (historical) materialism</strong>. Example: the French Revolution was driven by the idea of equality, but it was never really about equality &mdash; &ldquo;follow the money.&rdquo;</p>
+        </div>
+
+        <div class="block">
+          <span class="cite">Dillon Ch.1 &middot; guided questions</span>
+          <blockquote class="pull">&ldquo;History is nothing but the succession of separate generations, each of which exploits the materials, the forms of capital, the productive forces handed down to it by all preceding ones&hellip; It shows that circumstances make men just as much as men make circumstances.&rdquo;<cite>German Ideology, cited in Dillon</cite></blockquote>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="q">What&rsquo;s being said here, and how does it relate to dialectical materialism?</div>
+              <div class="a">Humans take what they&rsquo;ve inherited and build on it rather than staying stagnant. Dialectical materialism: historical change requires human activity, which is conditioned by economic forces &mdash; we act on our material conditions to produce new forms of social existence.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">What does Marx mean by &ldquo;species being&rdquo;?</div>
+              <div class="a">Humans use creativity and free will to <em>make</em> things through thought, not just think. Marx: humans are like animals until they fulfill their basic livelihood, then they evolve &mdash; we make things and use those things to thrive as a society. Distinct from Hegel&rsquo;s view (that what makes humans unique is extracting information from material circumstances and thinking abstractly &mdash; inductively, predictively).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Capitalism as a distinctive social form</h3>
+          <p class="lede">Marx acknowledged capitalism&rsquo;s economic/technological advances but also saw its regressive side. In a system of commodity production and exchange, the objective is <strong>ceaseless accumulation of capital and profit</strong>. Capitalists have no non-economic ties to their workers &mdash; this is what sets capitalism apart from other social systems (feudalism, slavery).</p>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="q">Why does Marx argue &ldquo;freedom under capitalism is really an illusion&rdquo;?</div>
+              <div class="a">You can technically choose where/who you work for, but that choice is limited by your economic situation &mdash; most people lack the resources or land to produce for themselves. People must sell their freedom (time/labor) in exchange for money to survive.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">Why is wage work &ldquo;forced labor&rdquo;?</div>
+              <div class="a">Workers aren&rsquo;t physically forced, but they&rsquo;re economically compelled to work. Under capitalism, workers aren&rsquo;t owned by others (unlike slavery), but they must sell their labor power to the capitalist class &mdash; they&rsquo;re &ldquo;free,&rdquo; but not free <em>not</em> to be wage-workers. Wage labor is indirect forced labor.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">What is commodification of labor?</div>
+              <div class="a">Commodities (everything we buy) have a use-value (useful to us) and an exchange-value (a price). Workers&rsquo; labor is itself a commodity &mdash; it has use-value for the capitalist (produces commodities, capital, profit) and exchange-value (the wage it&rsquo;s bought for).</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">What is &ldquo;false consciousness&rdquo; and why does it matter?</div>
+              <div class="a">Not being truly aware of the real forces shaping your life. It keeps workers from seeing (1) that capitalism is historically specific and human-made, not natural or inevitable, and (2) that wage-workers believe <em>they&rsquo;ll</em> profit through their labor, even though the capitalist always profits more. Marx predicted workers would come to recognize their exploitation &mdash; broadly, this hasn&rsquo;t happened (yet).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Division of labor, alienation &amp; commodity fetishism</h3>
+          <p class="lede"><strong>Division of labor:</strong> in a capitalist system, no one worker builds something completely &mdash; jobs are split into specialized parts. This breeds <strong>alienation</strong>: workers compete against each other rather than cooperating toward a shared goal, and can feel alienated from the product they helped create once it&rsquo;s owned by a capitalist.</p>
+          <p class="lede"><strong>Alienation</strong> (lecture definition): an unnatural, broken relationship between two things that should naturally be connected (think: estrangement, objectification). Four kinds &mdash; workers alienated from: (1) the products they produce, (2) themselves, (3) their species being, (4) other workers/people.</p>
+          <p class="lede"><strong>Commodity/table example</strong> (Capital): a commodity looks trivial at first &mdash; wood becomes a table, a useful object made from raw material. But once it enters the market as a commodity, it&rsquo;s transformed into something &ldquo;transcendent&rdquo;: it gains exchange-value, and shoppers stop seeing how it was made, only its price tag. This is <strong>commodity fetishism</strong> &mdash; fixating on the commodity while forgetting (a) what it&rsquo;s made from and (b) the human labor that made it. It obscures the unequal social relations behind production, and is part of the broader ideology of capitalism / a form of false consciousness.</p>
+          <p class="lede"><strong>Ideology &amp; the capitalist superstructure:</strong> ideology = the everyday ideas circulating in society that justify things and make them seem normal (e.g. consumerism, &ldquo;the freedom to shop&rdquo;). The <strong>base/superstructure</strong> model: the base (relations and means of production &mdash; the bourgeoisie exploiting the proletariat) shapes the superstructure (education, family, religion, mass media, politics), which in turn maintains and legitimizes the base.</p>
+        </div>
+
+        <div class="block">
+          <span class="cite">Lemert &middot; Marx &amp; Engels, &ldquo;The Manifesto of Class Struggle&rdquo; (excerpt)</span>
+          <p class="lede">&ldquo;The history of all hitherto existing societies is the history of class struggle.&rdquo; Premise: society is really a conflict/competition between groups &mdash; for Marx, fairly simple, between two big classes: the <strong>bourgeoisie</strong> (owns businesses/means of production) and the <strong>proletariat</strong> (works for wages). As capitalism grows industry and the size of the working class, the proletariat depends on the bourgeoisie for jobs/wages while the bourgeoisie controls the businesses &mdash; differing interests build tension and conflict. (Other conflict theorists, like Bourdieu, see more than two groups in conflict.)</p>
+        </div>
+
+        <div class="block">
+          <span class="cite">Application/digestion &middot; NYT articles &middot; 200&ndash;300 words, &ge;3 key concepts</span>
+          <div class="card">
+            <p class="lede" style="margin-bottom:10px">The article &ldquo;Wages Are Falling. Wealth Is Surging. No Wonder Americans Are Unhappy&rdquo; by Ben Casselman discusses capitalism causing inequality in the economic system &mdash; the rich keep getting richer while the poor struggle more and more, and the article traces the growing gap between classes.</p>
+            <p class="lede" style="margin-bottom:10px">Marx outlines the classes of society, the bourgeoisie and proletariat. This article discusses the conflict between classes and how they don&rsquo;t benefit equally from economic growth: workers struggle to keep up with expenses while wealthy people gain more money.</p>
+            <p class="lede" style="margin-bottom:10px">Marx argued that workers create value through their labor. The article shows the economy can grow while workers&rsquo; wages don&rsquo;t grow with it &mdash; supporting the idea that workers don&rsquo;t receive their fair share of the value they produce.</p>
+            <p class="lede" style="margin-bottom:10px">Marx believed workers can become alienated from their work &mdash; feeling little control over the wealth they create, which breeds financial insecurity and powerlessness. This connects to the article&rsquo;s point about how unhappy Americans are despite the economy producing record wealth.</p>
+            <p class="lede">The article parallels Marx&rsquo;s ideas of class conflict, surplus value, and alienation &mdash; showing how a capitalist country can create enormous wealth while widening the gap between workers and the wealthy class.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNIT 2: DURKHEIM -->
+      <section class="pane" id="pane-durkheim" hidden>
+        <div class="pane-head"><h2>Unit 2 &middot; Durkheim</h2><span class="status-pill progress">In progress</span></div>
+        <p class="lede muted">Covered through 9/18 (Key Concepts thru Methodological Rules; The Nature of Society thru Modern Society). More to come as the unit continues (Suicide).</p>
+
+        <div class="block">
+          <h3 class="sub">Background &amp; framing</h3>
+          <p class="lede">Emile Durkheim (1858&ndash;1917), &ldquo;the father of sociology.&rdquo; Born in France when it was quite powerful; Jewish (father and grandfather were rabbis); became a successful professor &mdash; a very different path from Marx&rsquo;s.</p>
+          <p class="lede"><strong>Marx vs. Durkheim:</strong> Marx is a <strong>conflict theorist</strong> &mdash; analysis based on economy, thinks in terms of broad historical laws/patterns that shape all historical development. Durkheim is a <strong>functionalist</strong> &mdash; rejects universal historical laws for a positivist approach based on observation, description, and classification; believes society should be studied like the natural sciences.</p>
+          <p class="lede"><strong>Conflict theory vs. functionalism:</strong> under conflict theory, society is a war &mdash; groups in competition (for Marx, two big groups; others like Bourdieu see more). Under functionalism, society is an organism &mdash; all its parts serve a function (to keep society going). Example: is there any society without crime? Crime/deviance must be serving some function. Unlike Marx, Durkheim is much more interested in <em>why society works</em>, not why it&rsquo;s dysfunctional.</p>
+        </div>
+
+        <div class="block">
+          <span class="cite">Dillon Ch.2 &middot; guided questions</span>
+          <blockquote class="pull">&ldquo;A social fact is any way of acting&hellip; [that is] capable of exerting over the individual an external constraint; or which is general over the whole of a given society, whilst having an existence of its own, independent of its individual manifestations.&rdquo;<cite>RSM 59</cite></blockquote>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="q">What does Durkheim mean by a social fact?</div>
+              <div class="a">It comes from external factors (laws, morals, etc.) that make you act a certain way whether you realize it or not. It exists as bigger than any one person &mdash; an overarching pattern in society. Language is a good example. Lecture add-on: social facts are <strong>external</strong> (not psychological, not dependent on any one person), <strong>diffuse</strong> (widespread throughout society), <strong>observable</strong>, and <strong>coercive</strong> (they shape how you act, who you are, how you think).</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">How does Durkheim suggest we study social facts?</div>
+              <div class="a">Objectively, not emotionally &mdash; treat them like things, the way you&rsquo;d study science. When explaining a social fact, use other social facts as the cause, not someone&rsquo;s feelings.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="cite">Fri 9/18 &middot; Dillon Ch.2, &ldquo;The Nature of Society&rdquo; through &ldquo;Modern Society&rdquo; &middot; guided questions</span>
+          <blockquote class="pull">&ldquo;The totality of beliefs and sentiments common to the average members of a society forms a determinate system with a life of its own. It can be termed the collective or common consciousness [conscience] &hellip; By definition it is diffused over society as a whole &hellip; it is independent of the particular conditions in which individuals find themselves. Individuals pass on, but it abides &hellip; [and] links successive generations to one another.&rdquo;<cite>Division of Labor in Society 38&ndash;39, cited in Dillon 88</cite></blockquote>
+          <div class="qa">
+            <div class="qa-item">
+              <div class="q">Pick a passage from &ldquo;The Nature of Society&rdquo; (pp. 83&ndash;84) &mdash; what is Durkheim explaining, and what&rsquo;s the role of a society&rsquo;s moral system?</div>
+              <div class="a">This section is generally building Durkheim&rsquo;s case that society is a reality <em>sui generis</em> &mdash; a thing in its own right, not just the sum of the individuals in it &mdash; and that it exercises real, external influence over its members. Depending on the specific paragraph picked, it&rsquo;s usually making one of a few closely related points: society constrains and shapes individual behavior through shared norms (social facts in action); the collective holds a kind of moral authority over the individual, obligating some behaviors and forbidding others; or individuals are <em>formed by</em> society rather than the reverse &mdash; we absorb language, habits, and moral sense from the collective we&rsquo;re born into. As for the moral system&rsquo;s role: for Durkheim it isn&rsquo;t primarily about personal virtue, it&rsquo;s functional &mdash; morality is the mechanism by which the collective regulates individual behavior and binds people to the group, giving individuals a sense of obligation beyond private interest and creating the shared meaning that makes coordinated social life possible at all.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">What central concept is being described in the quoted passage above?</div>
+              <div class="a">The collective conscience (collective/common consciousness) &mdash; the shared totality of beliefs and sentiments held in common across a society&rsquo;s members. Three things worth pulling straight from the quote: it&rsquo;s a system with &ldquo;a life of its own,&rdquo; not reducible to any one person&rsquo;s beliefs; it&rsquo;s diffused across the whole society and independent of any one individual&rsquo;s particular situation; and it persists across generations, outliving any single member and linking generations to each other. It&rsquo;s a textbook social fact &mdash; external, and the foundation of mechanical solidarity.</div>
+            </div>
+            <div class="qa-item">
+              <div class="q">What does Durkheim mean by solidarity, and how does it differ in traditional vs. modern societies?</div>
+              <div class="a">Solidarity is the social bond or force of cohesion that actually holds a society together &mdash; what makes individuals feel connected to, and dependent on, the collective rather than acting as isolated units. In traditional, small-scale societies, solidarity is <strong>mechanical</strong>: people are held together by likeness &mdash; similar work, shared beliefs, a strong collective conscience covering most of daily life &mdash; and violations of shared norms tend to be met with repressive law (punishment that reaffirms the violated norm). In modern, industrialized societies, solidarity becomes <strong>organic</strong>: as the division of labor deepens, people specialize into different roles and become less alike, but more dependent on each other&rsquo;s specialized functions &mdash; like organs in a body. The collective conscience narrows and weakens (more room for individual difference), and law shifts toward restitutive law (restoring relationships/agreements, like contract law) rather than punishing deviation from shared belief. Durkheim&rsquo;s core answer to &ldquo;what holds modern society together, if not one shared belief system?&rdquo; is: interdependence itself.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLACEHOLDER UNITS -->
+      <section class="pane" id="pane-weber" hidden>
+        <div class="pane-head"><h2>Unit 3 &middot; Weber</h2><span class="status-pill">Not started</span></div>
+        <div class="empty">No materials sent yet. Send readings, slides, or guided-question answers and I&rsquo;ll fill this in.</div>
+      </section>
+      <section class="pane" id="pane-dubois" hidden>
+        <div class="pane-head"><h2>Unit 4 &middot; Du Bois to Black Feminist Thought</h2><span class="status-pill">Not started</span></div>
+        <div class="empty">No materials sent yet. Send readings, slides, or guided-question answers and I&rsquo;ll fill this in.</div>
+      </section>
+      <section class="pane" id="pane-symbolic" hidden>
+        <div class="pane-head"><h2>Unit 5 &middot; Symbolic Interactionism</h2><span class="status-pill">Not started</span></div>
+        <div class="empty">No materials sent yet. Send readings, slides, or guided-question answers and I&rsquo;ll fill this in.</div>
+      </section>
+      <section class="pane" id="pane-power" hidden>
+        <div class="pane-head"><h2>Unit 6 &middot; Sex, Bodies, Truth and Power</h2><span class="status-pill">Not started</span></div>
+        <div class="empty">No materials sent yet. Send readings, slides, or guided-question answers and I&rsquo;ll fill this in.</div>
+      </section>
+      <section class="pane" id="pane-bourdieu" hidden>
+        <div class="pane-head"><h2>Unit 7 &middot; Bourdieu</h2><span class="status-pill">Not started</span></div>
+        <div class="empty">No materials sent yet. Send readings, slides, or guided-question answers and I&rsquo;ll fill this in.</div>
+      </section>
+
+      <!-- GLOSSARY -->
+      <section class="pane" id="pane-glossary" hidden>
+        <div class="pane-head"><h2>Key Terms Glossary</h2></div>
+        <p class="lede muted">Running list, added to as each unit progresses &mdash; handy for open-book/open-note exams.</p>
+        <dl class="glossary-grid">
+          <div class="term"><dt>Dialectical (historical) materialism</dt><dd>Marx: historical change requires human activity conditioned by economic forces; we act on material conditions to produce new forms of social existence (vs. Hegel, for whom ideas drive history).<span class="term-simple"><strong>In plain English:</strong> money and power shape history more than good ideas alone do.</span><span class="term-ex"><strong>Example:</strong> The French Revolution looked like it was driven by the idea of equality &mdash; but Marx would say the real driver was economic interest. &ldquo;Follow the money.&rdquo;</span></dd></div>
+          <div class="term"><dt>Species being</dt><dd>Marx: what makes humans distinct from animals is the creative capacity to make things once basic livelihood needs are met.<span class="term-simple"><strong>In plain English:</strong> what makes us human is that we can imagine something, then go build it.</span><span class="term-ex"><strong>Example:</strong> A beaver builds a dam on instinct. A person decides to build a table, picks the materials, and could have made something else entirely &mdash; that free, creative choice is species being.</span></dd></div>
+          <div class="term"><dt>False consciousness</dt><dd>Not seeing the real forces shaping your life; keeps workers from recognizing that capitalism is human-made and that they won&rsquo;t out-profit the capitalist.<span class="term-simple"><strong>In plain English:</strong> not realizing the system is working against you.</span><span class="term-ex"><strong>Example:</strong> A worker believes that if they just work hard enough, they&rsquo;ll get ahead like their boss &mdash; without seeing that the system is set up so the owner profits more no matter how hard they work.</span></dd></div>
+          <div class="term"><dt>Alienation</dt><dd>An unnatural, broken relationship between things that should be connected. Four kinds: from the products workers produce, from themselves, from their species being, from other workers.<span class="term-simple"><strong>In plain English:</strong> feeling disconnected from the work you do.</span><span class="term-ex"><strong>Example:</strong> A factory worker who assembles one small part of a car all day never sees the finished car, has no say in how it&rsquo;s sold, and barely knows the other workers who build the rest of it.</span></dd></div>
+          <div class="term"><dt>Commodity fetishism</dt><dd>Fixating on a commodity itself while forgetting what it&rsquo;s made from and the labor that made it; obscures the unequal relations behind production.<span class="term-simple"><strong>In plain English:</strong> only seeing the price tag, not the people who made the thing.</span><span class="term-ex"><strong>Example:</strong> Seeing a $40 T-shirt and thinking only about the price and the brand &mdash; not the fabric, the factory, or the worker who sewed it.</span></dd></div>
+          <div class="term"><dt>Ideology</dt><dd>The everyday ideas that circulate in a society and make existing arrangements seem normal or justified.<span class="term-simple"><strong>In plain English:</strong> ideas that make an unfair system feel normal.</span><span class="term-ex"><strong>Example:</strong> &ldquo;If you just work hard enough, you&rsquo;ll succeed&rdquo; feels like common sense &mdash; but it quietly justifies inequality by putting all the credit and blame on the individual.</span></dd></div>
+          <div class="term"><dt>Base / superstructure</dt><dd>Marx&rsquo;s model: the economic base (relations/means of production) shapes the superstructure (family, religion, education, media, politics), which in turn legitimizes the base.<span class="term-simple"><strong>In plain English:</strong> money shapes culture and laws, not the other way around.</span><span class="term-ex"><strong>Example:</strong> A company&rsquo;s owners (the base) fund political ads and lobbying (the superstructure) that help shape laws in their favor.</span></dd></div>
+          <div class="term"><dt>Bourgeoisie / proletariat</dt><dd>The owning class vs. the wage-working class; for Marx, the core conflict of capitalist society.<span class="term-simple"><strong>In plain English:</strong> the people who own stuff vs. the people who work for them.</span><span class="term-ex"><strong>Example:</strong> A factory owner (bourgeoisie) sets the wages for assembly-line workers (proletariat), who have to accept them to pay rent.</span></dd></div>
+          <div class="term"><dt>Conflict theory</dt><dd>Society as fundamentally competition/conflict between groups (Marx: two classes; others, like Bourdieu, see more).<span class="term-simple"><strong>In plain English:</strong> society runs on groups competing against each other.</span><span class="term-ex"><strong>Example:</strong> Marx saw capitalism as an ongoing tug-of-war between owners and workers over wages and profit.</span></dd></div>
+          <div class="term"><dt>Functionalism</dt><dd>Society as an organism whose parts each serve a function to keep it running; associated with Durkheim.<span class="term-simple"><strong>In plain English:</strong> every part of society exists for a reason, even the parts that seem bad.</span><span class="term-ex"><strong>Example:</strong> Even crime, which looks purely bad, might serve a function &mdash; a community reacting together to a crime can reinforce its shared sense of right and wrong.</span></dd></div>
+          <div class="term"><dt>Social fact</dt><dd>Durkheim: a way of acting/thinking/feeling that is external to the individual, widespread, observable, and coercive (e.g. language).<span class="term-simple"><strong>In plain English:</strong> a rule or pattern that shapes you, even though you didn&rsquo;t create it.</span><span class="term-ex"><strong>Example:</strong> You didn&rsquo;t invent English &mdash; it shaped how you think before you could choose it, and it still limits who you can talk to and what you can express.</span></dd></div>
+          <div class="term"><dt>Positivism</dt><dd>Studying society objectively, like a natural science &mdash; through observation, description, classification &mdash; rather than through feeling or introspection.<span class="term-simple"><strong>In plain English:</strong> studying people the same way you&rsquo;d study rocks or chemicals &mdash; just the facts.</span><span class="term-ex"><strong>Example:</strong> Durkheim studied suicide using statistics and social patterns across groups, rather than asking individuals why they personally felt sad.</span></dd></div>
+        </dl>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section class="pane" id="pane-flashcards" hidden>
+        <div class="pane-head"><h2>Flashcards</h2></div>
+        <div class="fc-toolbar">
+          <button class="chip active" data-unit="all" type="button">All</button>
+          <button class="chip" data-unit="orient" type="button">Getting Oriented</button>
+          <button class="chip" data-unit="marx" type="button">Marx</button>
+          <button class="chip" data-unit="durkheim" type="button">Durkheim</button>
+          <button class="chip" data-unit="glossary" type="button">Glossary</button>
+          <button class="chip" id="fcStarredOnly" type="button">&#9733; Starred only</button>
+        </div>
+        <div class="fc-stage" id="fcStage">
+          <div class="fc-progress" id="fcProgress">0 / 0</div>
+          <div class="fc-card-wrap">
+            <div class="fc-card" id="fcCard" role="button" tabindex="0" aria-label="Flashcard, press space to flip">
+              <div class="fc-face front">
+                <span class="fc-tag" id="fcFrontTag"></span>
+                <p class="fc-text" id="fcFrontText"></p>
+                <span class="fc-hint">Click or press space to flip</span>
+              </div>
+              <div class="fc-face back">
+                <span class="fc-tag" id="fcBackTag"></span>
+                <p class="fc-text" id="fcBackText"></p>
+              </div>
+            </div>
+          </div>
+          <div class="fc-controls">
+            <button class="fc-btn" id="fcPrev" type="button">&larr; Prev</button>
+            <button class="fc-btn" id="fcShuffle" type="button">&#8635; Shuffle</button>
+            <button class="fc-btn primary" id="fcNext" type="button">Next &rarr;</button>
+          </div>
+          <button class="fc-star" id="fcStar" type="button">&#9734; Star for review</button>
+        </div>
+      </section>
+
+      <!-- TEACH ME -->
+      <section class="pane" id="pane-teach" hidden>
+        <div class="pane-head"><h2>Teach Me</h2></div>
+        <p class="lede muted">A guided walkthrough &mdash; one idea at a time, in order, building on what came before. Best with sound mind and a few minutes, not for a quick lookup (use the unit page or Flashcards for that).</p>
+        <div class="fc-toolbar" id="teachUnitSelect">
+          <button class="chip active" data-tunit="marx" type="button">Unit 1 &middot; Marx</button>
+          <button class="chip" data-tunit="durkheim" type="button">Unit 2 &middot; Durkheim</button>
+        </div>
+        <div class="teach-progress-wrap">
+          <span class="teach-step-label" id="teachStepLabel">Step 1 of 1</span>
+          <div class="teach-progress-bar"><div class="teach-progress-fill" id="teachProgressFill" style="width:0%"></div></div>
+        </div>
+        <div class="teach-card" id="teachCard">
+          <h3 id="teachTitle"></h3>
+          <p class="teach-body" id="teachBody"></p>
+          <div class="teach-check" id="teachCheck" hidden>
+            <span class="tc-label">Quick check</span>
+            <span class="tc-q" id="teachCheckQ"></span>
+            <button class="teach-reveal-btn" id="teachRevealBtn" type="button">Show answer</button>
+            <span class="tc-a" id="teachCheckA"></span>
+          </div>
+        </div>
+        <div class="teach-nav">
+          <button class="fc-btn" id="teachPrev" type="button">&larr; Back</button>
+          <div class="teach-dots" id="teachDots"></div>
+          <button class="fc-btn primary" id="teachNext" type="button">Next &rarr;</button>
+        </div>
+        <div class="teach-end" id="teachEnd" hidden>
+          <button class="fc-btn primary" id="teachToFlash" type="button">Review with Flashcards</button>
+          <button class="fc-btn" id="teachRestart" type="button">Restart this lesson</button>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="pane" id="pane-timeline" hidden>
+        <div class="pane-head"><h2>Theorist Timeline</h2></div>
+        <p class="lede muted">Life spans of the theorists on the syllabus, plus Hegel (Marx&rsquo;s key influence, not a unit of his own). Color shows where each stands in the course right now &mdash; hover a bar for exact dates.</p>
+        <div class="timeline-wrap">
+          <div class="timeline">
+            <div class="tl-axis" id="tlAxis"></div>
+            <div id="tlRows"></div>
+          </div>
+        </div>
+        <div class="tl-legend">
+          <span><span class="tl-swatch" style="background:var(--accent)"></span>Covered</span>
+          <span><span class="tl-swatch" style="background:var(--gold)"></span>In progress</span>
+          <span><span class="tl-swatch" style="background:var(--muted);opacity:.32"></span>Not yet covered</span>
+          <span><span class="tl-swatch" style="border:1.5px dashed var(--muted);background:transparent"></span>Context / influence</span>
+        </div>
+      </section>
+
+      <footer class="note">This notebook grows as you send readings, slides, and guided-question answers &mdash; just say &ldquo;send notes&rdquo; anytime for this link. Drill the Flashcards for exam review, or check the Timeline to see how the theorists overlap. Deadlines and course policies live in the separate Course Tracker (linked in the left rail).</footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  var FLASHCARDS = [
+    {id:'g1', unit:'glossary', front:'Dialectical (historical) materialism', back:"Marx: historical change requires human activity conditioned by economic forces; we act on material conditions to produce new forms of social existence (vs. Hegel, for whom ideas drive history). Example: the French Revolution looked driven by the idea of equality, but Marx would say it was really about economic interest — \"follow the money.\""},
+    {id:'g2', unit:'glossary', front:'Species being', back:"What makes humans distinct from animals is the creative capacity to make things once basic livelihood needs are met. Example: a beaver builds a dam on instinct; a person chooses to build a table and could have made something else — that free, creative choice is species being."},
+    {id:'g3', unit:'glossary', front:'False consciousness', back:"Not seeing the real forces shaping your life; keeps workers from recognizing that capitalism is human-made and that they won't out-profit the capitalist. Example: a worker believes hard work alone will make them rich like their boss, without seeing the system is built so the owner always profits more."},
+    {id:'g4', unit:'glossary', front:'Alienation', back:"An unnatural, broken relationship between things that should be connected. Four kinds: from the products workers produce, from themselves, from their species being, from other workers. Example: an assembly-line worker who builds one small part all day, never sees the finished product, and barely knows the coworkers who build the rest."},
+    {id:'g5', unit:'glossary', front:'Commodity fetishism', back:"Fixating on a commodity itself while forgetting what it's made from and the labor that made it; obscures the unequal relations behind production. Example: seeing a $40 T-shirt and thinking only of the price and brand, not the worker who sewed it."},
+    {id:'g6', unit:'glossary', front:'Ideology', back:"The everyday ideas that circulate in a society and make existing arrangements seem normal or justified. Example: \"if you work hard enough, you'll succeed\" feels like common sense, but it quietly justifies inequality by pinning it all on the individual."},
+    {id:'g7', unit:'glossary', front:'Base / superstructure', back:"Marx's model: the economic base (relations/means of production) shapes the superstructure (family, religion, education, media, politics), which in turn legitimizes the base. Example: a company's owners (base) fund political ads (superstructure) that help shape laws in their favor."},
+    {id:'g8', unit:'glossary', front:'Bourgeoisie / proletariat', back:"The owning class vs. the wage-working class; for Marx, the core conflict of capitalist society. Example: a factory owner (bourgeoisie) sets wages for assembly-line workers (proletariat), who must accept them to pay rent."},
+    {id:'g9', unit:'glossary', front:'Conflict theory', back:'Society as fundamentally competition/conflict between groups (Marx: two classes; others, like Bourdieu, see more). Example: Marx saw capitalism as an ongoing tug-of-war between owners and workers over wages and profit.'},
+    {id:'g10', unit:'glossary', front:'Functionalism', back:"Society as an organism whose parts each serve a function to keep it running; associated with Durkheim. Example: even crime might serve a function — a community reacting together to it can reinforce shared morals."},
+    {id:'g11', unit:'glossary', front:'Social fact', back:"Durkheim: a way of acting/thinking/feeling that is external to the individual, widespread, observable, and coercive (e.g. language). Example: you didn't invent English, but it shaped how you think and still limits who you can talk to."},
+    {id:'g12', unit:'glossary', front:'Positivism', back:'Studying society objectively, like a natural science — through observation, description, classification — rather than through feeling or introspection. Example: Durkheim studied suicide using statistics across groups, not by asking individuals how they personally felt.'},
+    {id:'o1', unit:'orient', front:'What do Marx, Durkheim, and Weber share, and what sets each apart?', back:"Shared goal: making sense of the rise of modern society. Marx focused on economics, Durkheim on society's transformation, Weber on the individual."},
+    {id:'o2', unit:'orient', front:'Name the three developments of modernity Marx, Durkheim, and Weber respond to.', back:'Political (French Revolution → citizenship/rights), Economic (feudalism → capitalism), and the Rise of Individualism (weaker collective ties).'},
+    {id:'m1', unit:'marx', front:'What does Marx mean by "species being"?', back:'Humans are distinct from animals in their creative capacity to make things once basic livelihood is met — not just think, but produce through consciousness.'},
+    {id:'m2', unit:'marx', front:'Why does Marx say "freedom under capitalism is an illusion"?', back:'You can technically choose your employer, but the choice is limited by your economic situation — most people lack the resources to produce for themselves, so they must sell their labor to survive.'},
+    {id:'m3', unit:'marx', front:'Why is wage work "forced labor" for Marx?', back:'Workers aren\'t owned like slaves, but they must sell their labor power to survive — "free," but not free not to be a wage-worker. Wage labor is indirect forced labor.'},
+    {id:'m4', unit:'marx', front:'What are the four kinds of alienation?', back:'Workers alienated from: (1) the products they produce, (2) themselves, (3) their species being, (4) other workers/people.'},
+    {id:'m5', unit:'marx', front:'What is commodity fetishism?', back:"Fixating on a commodity (like a table) while forgetting what it's made from and the labor that made it — once something enters the market, its exchange-value obscures the human labor behind it."},
+    {id:'m6', unit:'marx', front:'What is the base/superstructure model?', back:'The economic base (relations & means of production) shapes the superstructure (family, religion, education, media, politics), which in turn legitimizes the base.'},
+    {id:'m7', unit:'marx', front:'What are the two classes in the Manifesto?', back:'The bourgeoisie (owns businesses/means of production) and the proletariat (works for wages) — their differing interests build tension and conflict.'},
+    {id:'m8', unit:'marx', front:'How does Marx disagree with Hegel?', back:'Hegel: ideas drive historical change. Marx: economic power (who controls resources) drives it — dialectical (historical) materialism. "Follow the money."'},
+    {id:'d1', unit:'durkheim', front:'What is a "social fact"?', back:'A way of acting/thinking/feeling that exerts external constraint over the individual — general throughout society, with an existence of its own (e.g. language).'},
+    {id:'d2', unit:'durkheim', front:'What are the four characteristics of a social fact?', back:'External to the individual, diffuse (widespread), observable, and coercive.'},
+    {id:'d3', unit:'durkheim', front:'How does Durkheim say we should study social facts?', back:'Objectively, like a natural science — through observation, not emotion. Explain a social fact with other social facts, not personal feelings.'},
+    {id:'d4', unit:'durkheim', front:'Conflict theory vs. functionalism — how do they see society?', back:'Conflict theory: society as a war between competing groups. Functionalism: society as an organism where every part (even crime) serves a function to keep it running.'}
+  ];
+
+  var TIMELINE = [
+    {name:'Hegel', birth:1770, death:1831, status:'context', note:"Influence on Marx — not a course unit"},
+    {name:'Marx', birth:1818, death:1883, status:'covered', note:'Unit 1'},
+    {name:'Durkheim', birth:1858, death:1917, status:'progress', note:'Unit 2 — in progress'},
+    {name:'Weber', birth:1864, death:1920, status:'upcoming', note:'Unit 3'},
+    {name:'Du Bois', birth:1868, death:1963, status:'upcoming', note:'Unit 4'},
+    {name:'Goffman', birth:1922, death:1982, status:'upcoming', note:'Unit 5'},
+    {name:'Dorothy Smith', birth:1926, death:2022, status:'upcoming', note:'Unit 4'},
+    {name:'Foucault', birth:1926, death:1984, status:'upcoming', note:'Unit 6'},
+    {name:'Patricia Hill Collins', birth:1948, death:null, status:'upcoming', note:'Unit 4'},
+    {name:'Bourdieu', birth:1930, death:2002, status:'upcoming', note:'Unit 7'}
+  ];
+
+  var rail = document.getElementById('rail');
+  var items = Array.prototype.slice.call(rail.querySelectorAll('.rail-item[data-target]'));
+  var panes = {};
+  items.forEach(function(btn){
+    var key = btn.getAttribute('data-target');
+    panes[key] = document.getElementById('pane-' + key);
+  });
+  var menuBtn = document.getElementById('menuBtn');
+  var scrim = document.getElementById('scrim');
+
+  function show(key){
+    items.forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-target') === key); });
+    Object.keys(panes).forEach(function(k){ if(panes[k]) panes[k].hidden = (k !== key); });
+    try{ localStorage.setItem('soci201-tab', key); }catch(e){}
+    closeRail();
+  }
+  items.forEach(function(btn){ btn.addEventListener('click', function(){ show(btn.getAttribute('data-target')); }); });
+
+  function openRail(){ rail.classList.add('open'); scrim.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); }
+  function closeRail(){ rail.classList.remove('open'); scrim.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); }
+  menuBtn.addEventListener('click', function(){ rail.classList.contains('open') ? closeRail() : openRail(); });
+  scrim.addEventListener('click', closeRail);
+
+  /* ---------- Search ---------- */
+  var SEARCH_INDEX = [];
+  function buildSearchIndex(){
+    var idx = [];
+    document.querySelectorAll('.pane').forEach(function(pane){
+      var paneKey = pane.id.replace('pane-','');
+      var headEl = pane.querySelector('.pane-head h2');
+      var paneTitle = headEl ? headEl.textContent : paneKey;
+      var nodes = pane.querySelectorAll('.qa-item, p.lede, blockquote.pull, .term');
+      nodes.forEach(function(node){
+        var text = node.textContent.replace(/\s+/g,' ').trim();
+        if(text.length < 8) return;
+        idx.push({ pane: paneKey, paneTitle: paneTitle, text: text, el: node });
+      });
+    });
+    return idx;
+  }
+  function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function runSearch(q){
+    var resultsEl = document.getElementById('searchResults');
+    q = q.trim();
+    if(!q){ resultsEl.hidden = true; resultsEl.innerHTML=''; return; }
+    var ql = q.toLowerCase();
+    var matches = SEARCH_INDEX.filter(function(item){ return item.text.toLowerCase().indexOf(ql) !== -1; }).slice(0,8);
+    resultsEl.innerHTML = '';
+    if(!matches.length){
+      var d = document.createElement('div'); d.className='search-empty'; d.textContent = 'No matches for "'+q+'"';
+      resultsEl.appendChild(d);
+    } else {
+      matches.forEach(function(m){
+        var btn = document.createElement('button');
+        btn.type='button'; btn.className='search-result';
+        var lower = m.text.toLowerCase();
+        var idxPos = lower.indexOf(ql);
+        var start = Math.max(0, idxPos-40);
+        var pre = (start>0?'…':'') + m.text.substring(start, idxPos);
+        var mid = m.text.substring(idxPos, idxPos+q.length);
+        var post = m.text.substring(idxPos+q.length, idxPos+q.length+70) + '…';
+        var unitSpan = document.createElement('span'); unitSpan.className='sr-unit'; unitSpan.textContent = m.paneTitle;
+        btn.appendChild(unitSpan);
+        var textSpan = document.createElement('span');
+        var markEl = document.createElement('mark'); markEl.textContent = mid;
+        textSpan.appendChild(document.createTextNode(pre));
+        textSpan.appendChild(markEl);
+        textSpan.appendChild(document.createTextNode(post));
+        btn.appendChild(textSpan);
+        btn.addEventListener('click', function(){
+          show(m.pane);
+          resultsEl.hidden = true;
+          document.getElementById('searchInput').value='';
+          setTimeout(function(){
+            m.el.scrollIntoView({behavior:'smooth', block:'center'});
+            m.el.classList.add('flash-hit');
+            setTimeout(function(){ m.el.classList.remove('flash-hit'); }, 1700);
+          }, 60);
+        });
+        resultsEl.appendChild(btn);
+      });
+    }
+    resultsEl.hidden = false;
+  }
+  var searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', function(){ runSearch(searchInput.value); });
+  searchInput.addEventListener('keydown', function(e){ if(e.key==='Escape'){ this.value=''; runSearch(''); this.blur(); } });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.search-wrap')){ document.getElementById('searchResults').hidden = true; }
+  });
+
+  /* ---------- Flashcards ---------- */
+  (function(){
+    var order = [], pos = 0, currentFilter = 'all', showStarredOnly = false, starred = {};
+    try{ starred = JSON.parse(localStorage.getItem('soci201-starred') || '{}'); }catch(e){ starred = {}; }
+
+    var cardEl, faceFrontTag, faceFrontText, faceBackTag, faceBackText, progressEl, starBtn, chipButtons;
+
+    function deck(){
+      return FLASHCARDS.filter(function(c){
+        if(showStarredOnly && !starred[c.id]) return false;
+        if(currentFilter!=='all' && c.unit!==currentFilter) return false;
+        return true;
+      });
+    }
+    function shuffleArr(a){
+      a = a.slice();
+      for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+      return a;
+    }
+    function labelFor(u){ return { orient:'Getting Oriented', marx:'Unit 1 · Marx', durkheim:'Unit 2 · Durkheim', glossary:'Glossary' }[u] || u; }
+    function rebuild(){ order = deck(); pos = 0; render(); }
+    function render(){
+      if(!order.length){
+        progressEl.textContent = '0 / 0';
+        cardEl.classList.remove('flipped');
+        faceFrontTag.textContent=''; faceFrontText.textContent='Nothing here yet — try a different filter.';
+        faceBackTag.textContent=''; faceBackText.textContent='';
+        starBtn.disabled = true;
+        return;
+      }
+      starBtn.disabled = false;
+      var c = order[pos];
+      cardEl.classList.remove('flipped');
+      faceFrontTag.textContent = labelFor(c.unit);
+      faceFrontText.textContent = c.front;
+      faceBackTag.textContent = labelFor(c.unit);
+      faceBackText.textContent = c.back;
+      progressEl.textContent = (pos+1) + ' / ' + order.length;
+      starBtn.classList.toggle('starred', !!starred[c.id]);
+      starBtn.innerHTML = starred[c.id] ? '&#9733; Starred' : '&#9734; Star for review';
+    }
+    function next(){ if(!order.length) return; pos = (pos+1) % order.length; render(); }
+    function prev(){ if(!order.length) return; pos = (pos-1+order.length) % order.length; render(); }
+    function flip(){ if(!order.length) return; cardEl.classList.toggle('flipped'); }
+    function toggleStar(){
+      if(!order.length) return;
+      var c = order[pos];
+      if(starred[c.id]){ delete starred[c.id]; } else { starred[c.id] = true; }
+      try{ localStorage.setItem('soci201-starred', JSON.stringify(starred)); }catch(e){}
+      render();
+    }
+
+    function init(){
+      cardEl = document.getElementById('fcCard');
+      faceFrontTag = document.getElementById('fcFrontTag');
+      faceFrontText = document.getElementById('fcFrontText');
+      faceBackTag = document.getElementById('fcBackTag');
+      faceBackText = document.getElementById('fcBackText');
+      progressEl = document.getElementById('fcProgress');
+      starBtn = document.getElementById('fcStar');
+      chipButtons = Array.prototype.slice.call(document.querySelectorAll('.fc-toolbar .chip[data-unit]'));
+      if(!cardEl) return;
+
+      cardEl.addEventListener('click', flip);
+      cardEl.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); flip(); } });
+      document.getElementById('fcNext').addEventListener('click', next);
+      document.getElementById('fcPrev').addEventListener('click', prev);
+      document.getElementById('fcShuffle').addEventListener('click', function(){ order = shuffleArr(order); pos=0; render(); });
+      starBtn.addEventListener('click', toggleStar);
+      chipButtons.forEach(function(chip){
+        chip.addEventListener('click', function(){
+          chipButtons.forEach(function(c){ c.classList.remove('active'); });
+          chip.classList.add('active');
+          currentFilter = chip.getAttribute('data-unit');
+          rebuild();
+        });
+      });
+      var starredChip = document.getElementById('fcStarredOnly');
+      starredChip.addEventListener('click', function(){
+        showStarredOnly = !showStarredOnly;
+        starredChip.classList.toggle('active', showStarredOnly);
+        rebuild();
+      });
+      rebuild();
+    }
+    init();
+  })();
+
+  /* ---------- Teach Me ---------- */
+  (function(){
+    var TEACH_LESSONS = {
+      marx: [
+        { title:"Welcome to Unit 1: Marx", body:"Karl Marx spent his life trying to answer one question: who actually holds power in a capitalist society, and why does it feel so hard to change? He wasn't a professor tucked away in a university — he was an activist and journalist who gave up a comfortable middle-class life and lived in poverty for most of his adult years. That matters: Marx wasn't theorizing about inequality from a distance, he was living close to it. Over the next several steps we'll build up his ideas piece by piece, the same way he built them — starting with where he came from, and ending with how it all fits together." },
+        { title:"Where Marx started: Hegel", body:"Before building his own theory, Marx was deeply shaped by the philosopher Hegel. Hegel believed history moves forward in stages, through a dialectic (a fancy word for “contradiction”): a new idea shows up (thesis), something pushes back against it (antithesis), and the tension resolves into something new (synthesis). Marx agreed with this basic shape — history moving forward through conflict and resolution. But he was about to disagree with Hegel on something much bigger: what actually drives that movement.",
+          check:{ q:"In Hegel's dialectic, what are the three stages called?", a:"Thesis (a new idea), antithesis (the pushback), and synthesis (the resolution that comes out of the conflict)." } },
+        { title:"Marx's big break from Hegel: it's economics, not ideas", body:"Hegel thought ideas were the engine of history. Marx flipped this: he argued that economic power — who controls land, money, and resources — is what really drives historical change. This is dialectical (historical) materialism. Take the French Revolution: on the surface it looks driven by the idea of equality. Marx would say look closer — underneath was a battle over who controlled wealth and property. Follow the money." },
+        { title:"What makes us human: species being", body:"Before capitalism itself, Marx wants you to understand what makes humans different from animals. He calls it species being. A beaver builds a dam purely on instinct — it can't decide to build something else. A human can imagine a table, a house, a poem, and then go make it. That capacity to consciously create on purpose — not just survive — is, for Marx, the core of being human. Keep this in your back pocket; it matters a lot once we get to alienation.",
+          check:{ q:"What is “species being”?", a:"The uniquely human ability to consciously imagine something and then create it — not just survive on instinct." } },
+        { title:"Capitalism as a distinctive system", body:"Marx gives capitalism credit for real economic and technological progress — but also says it has a dark side. In a capitalist system, the whole point is the ceaseless accumulation of capital and profit. And here's the key difference from earlier systems like feudalism: capitalists have no non-economic relationship to the people who work for them. A feudal lord had some (deeply unequal) sense of obligation to his serfs. A capitalist's relationship to a worker is purely transactional — labor for wages, nothing more." },
+        { title:"Why “freedom” under capitalism is an illusion", body:"Here's where Marx gets provocative. You're technically free to choose where you work — nobody's holding a gun to your head. But Marx says that freedom is mostly an illusion, because your choice is boxed in by your economic situation. Most people don't own land or tools to produce things for themselves, so in practice they have to sell their labor to someone who does. It's a choice in name only.",
+          check:{ q:"Why does Marx call freedom under capitalism an illusion?", a:"You can technically choose your employer, but most people lack the resources to produce for themselves, so selling your labor isn't really optional — it's a necessity dressed up as a choice." } },
+        { title:"Wage labor as “forced labor”", body:"This leads Marx to a bold claim: wage labor is a form of forced labor. Not the same as slavery — a wage worker isn't owned by anyone, and can quit any single job. But they can't opt out of being a wage worker altogether, because they need money to survive, and selling their labor is the only way to get it. You're “free” in name, Marx says, but not free not to work for someone." },
+        { title:"Commodities: use-value vs. exchange-value", body:"To see how labor gets bought and sold, you need two ideas: use-value (how useful something actually is to you) and exchange-value (what it's worth on the market — its price). A winter coat has use-value because it keeps you warm, and exchange-value because you could sell it. Under capitalism, Marx says, even labor itself becomes a commodity: your time and effort have use-value for your employer (it produces goods and profit) and exchange-value (the wage you're paid).",
+          check:{ q:"What's the difference between use-value and exchange-value?", a:"Use-value is how useful something actually is to you. Exchange-value is what it's worth on the market — its price." } },
+        { title:"False consciousness", body:"If capitalism is this unequal, why don't more people push back? Marx's answer is false consciousness — not fully seeing the real forces shaping your life. Two things keep it going: capitalism feels natural and inevitable rather than something humans built (and could rebuild differently), and workers tend to believe that if they just work hard enough they'll get ahead — without seeing the system is structured so owners profit more no matter how hard anyone works. Marx predicted workers would eventually see through this. Broadly, he's still waiting." },
+        { title:"Alienation: losing your species being", body:"Remember species being — making things on purpose as core to being human? Marx says capitalism strips that away from workers. He calls this alienation, and breaks it into four kinds: alienated from the product you make (you don't own or control it), from the process itself (repetitive, dictated by someone else), from your own species being (laboring to survive, not creating freely), and from other workers (competing for jobs instead of cooperating).",
+          check:{ q:"What are the four kinds of alienation?", a:"From the product you make, from the process of making it, from your own species being, and from other workers." } },
+        { title:"Commodity fetishism: forgetting the labor behind things", body:"Take a piece of wood. On its own it's just a useful material — you could turn it into a table. But once that table enters the market as a commodity, something strange happens: people stop seeing the labor and materials behind it, and start seeing only its price tag. Marx calls this commodity fetishism — we fixate on the object itself and lose sight of the human work and unequal relationships that produced it." },
+        { title:"Ideology and the base/superstructure", body:"Marx has a model for how all of this stays in place. The economic base (who owns what, who works for whom) shapes the superstructure — family structures, religion, education, media, politics. The superstructure doesn't just reflect the base, it protects it: it spreads ideology, the everyday ideas that make an unequal system feel normal and justified — like “anyone can make it if they just work hard enough.”",
+          check:{ q:"In the base/superstructure model, what shapes what?", a:"The economic base (who owns what, who works for whom) shapes the superstructure (family, religion, education, media, politics) — and the superstructure, in turn, helps justify and protect the base." } },
+        { title:"Class conflict: bourgeoisie vs. proletariat", body:"Zoom all the way out, and Marx says society boils down to conflict between two big classes: the bourgeoisie, who own the businesses and means of production, and the proletariat, who work for wages. As capitalism grows, the working class grows with it — and because their interests are fundamentally opposed (owners want to pay less, workers want to earn more), tension and conflict are baked into the system itself. This is the heart of conflict theory." },
+        { title:"Putting it all together", body:"Let's connect the dots. Marx starts from a philosophical break with Hegel (it's economics, not ideas, that drives history), builds a theory of what makes us human (species being), and uses that to explain what capitalism damages in us (alienation). Along the way, he shows how capitalism disguises itself — false consciousness, commodity fetishism, ideology — so the people who benefit least from it don't rise up against it. Underneath it all: one core conflict, owners versus workers. That's Unit 1. Use Flashcards to drill the vocabulary, and your unit notes for exact wording on reading-notes days." }
+      ],
+      durkheim: [
+        { title:"Welcome to Unit 2: Durkheim", body:"Emile Durkheim wanted sociology to be treated as a real science, not just opinion or philosophy. His big question was different from Marx's. Instead of asking who holds economic power, Durkheim asked what actually holds a society together and keeps people from falling apart when everything around them is changing so fast. Over the next several steps we will build up his ideas the way the course covers them, starting with his method and ending with his study of suicide. This lesson will keep growing as more Durkheim material gets added, so come back to it after new readings instead of waiting for the whole unit to be finished." },
+        { title:"Social facts: the basic unit of Durkheim's sociology", body:"Durkheim's first move was to define what sociology should actually study. He called it the social fact: a way of thinking, feeling, or acting that exists outside any one person, and that pushes on individuals from outside themselves. Laws, customs, moral rules, even the language you speak are all social facts. You did not invent them and you cannot just decide to ignore them without consequences.",
+          check:{ q:"What is a social fact?", a:"A way of thinking, feeling, or acting that exists outside individuals and constrains them from outside, like laws, customs, or moral rules." } },
+        { title:"Treat social facts as things", body:"In his methodological rules, Durkheim insists sociologists study social facts as things. That means observing them from the outside, the same way a scientist observes a rock or a chemical reaction, instead of just relying on gut feelings about why people act the way they do. This is part of what made Durkheim's approach feel scientific and is a big reason he is considered a founder of sociology as a discipline." },
+        { title:"External and coercive", body:"Two features make something a social fact. It is external, meaning it existed before you were born and will keep existing after you are gone, and it is coercive, meaning there is real social pressure or punishment if you break it. Think about showing up to a job interview in pajamas. Nobody arrests you, but you will feel the coercive weight of the norm almost instantly.",
+          check:{ q:"What are the two defining features of a social fact?", a:"It is external to any one individual, and it is coercive, meaning it pressures or constrains people to follow it." } },
+        { title:"The collective conscience", body:"Durkheim uses the term collective conscience for the shared beliefs and sentiments that are common to the average members of a society. It is not any one person's set of beliefs. It is a kind of system with a life of its own, spread across the whole society, that links one generation to the next even as individuals come and go. This shared moral system is what makes a group of separate people actually feel like one society.",
+          check:{ q:"What is the collective conscience?", a:"The shared beliefs and sentiments common to the average members of a society, forming a system that exists above any one individual and connects generations to each other." } },
+        { title:"Mechanical solidarity: bound by sameness", body:"Durkheim describes two different ways societies hold together. In simpler, smaller societies, people are bound by mechanical solidarity: they do similar work, share similar beliefs, and feel connected because they are alike. The collective conscience is strong and covers almost every part of life, so there is not much room for individual difference." },
+        { title:"Organic solidarity: bound by difference", body:"As societies grow larger and more complex, work becomes specialized. Not everyone farms or builds anymore, people become doctors, teachers, mechanics, and so on. Durkheim calls the resulting bond organic solidarity, because it works the way organs in a body depend on each other despite being different. People are held together not by being alike, but by needing each other to function. The collective conscience gets weaker and more general, and individuals get more room to be different, but society still holds together through interdependence.",
+          check:{ q:"What is the difference between mechanical and organic solidarity?", a:"Mechanical solidarity binds people through sameness, similar work and beliefs, common in simpler societies. Organic solidarity binds people through difference and interdependence, common in complex societies with specialized labor." } },
+        { title:"Why Durkheim studied suicide", body:"Suicide looks like the most personal, individual act there is. Durkheim picked it on purpose, to prove that even something this personal is shaped by social forces. He compared suicide rates across countries, religions, and groups, and found the rates stayed strikingly stable over time within each group, which told him something social, not just psychological, was driving the pattern." },
+        { title:"Integration as the key factor", body:"Durkheim's overarching finding was about integration, meaning how strongly connected a person is to a social group. People who are more integrated into stable social bonds, family, religion, community, tend to have lower suicide rates, because those bonds give life a sense of shared purpose and support. People who are less integrated, more isolated or cut loose from those bonds, tend to have higher suicide rates.",
+          check:{ q:"What did Durkheim find about integration and suicide rates?", a:"Suicide rates go up as social integration goes down. Strong ties to family, religion, or community tend to protect against suicide, while isolation raises the risk." } },
+        { title:"The four types of suicide", body:"Durkheim organized this finding into four types, based on too much or too little integration and regulation. Egoistic suicide comes from too little integration, feeling cut off from the group. Altruistic suicide comes from too much integration, where the group matters more than the individual's own life. Anomic suicide comes from too little regulation, when norms break down, often during sudden social change. Fatalistic suicide comes from too much regulation, when a person feels excessively controlled with no way out.",
+          check:{ q:"Which type of suicide comes from too little social regulation, often during sudden social change?", a:"Anomic suicide." } },
+        { title:"Where this unit stands so far", body:"That covers everything from Unit 2 so far: social facts and the methodological rules, mechanical and organic solidarity and the collective conscience, and the social conditions behind suicide. New steps will get added here as more readings and class material come in, so this lesson keeps pace with the course instead of waiting until the unit is done. Use Flashcards to drill the vocabulary in the meantime." }
+      ]
+    };
+
+    var unit, step;
+
+    var stepLabel, fill, titleEl, bodyEl, checkWrap, checkQ, checkA, revealBtn, prevBtn, nextBtn, dotsWrap, endWrap, toFlashBtn, restartBtn;
+
+    function lesson(){ return TEACH_LESSONS[unit] || []; }
+
+    function renderDots(){
+      dotsWrap.innerHTML = '';
+      lesson().forEach(function(_, i){
+        var d = document.createElement('button');
+        d.type='button'; d.className = 'teach-dot' + (i < step ? ' done' : '') + (i === step ? ' current' : '');
+        d.setAttribute('aria-label', 'Step ' + (i+1));
+        d.addEventListener('click', function(){ step = i; save(); render(); });
+        dotsWrap.appendChild(d);
+      });
+    }
+    function save(){ try{ localStorage.setItem('soci201-teach-'+unit, String(step)); }catch(e){} }
+
+    function loadUnit(u){
+      unit = u;
+      step = 0;
+      try{ var savedStep = localStorage.getItem('soci201-teach-'+unit); if(savedStep!==null) step = Math.max(0, Math.min(parseInt(savedStep,10)||0, lesson().length-1)); }catch(e){}
+      render();
+    }
+
+    function render(){
+      var steps = lesson();
+      var s = steps[step];
+      stepLabel.textContent = 'Step ' + (step+1) + ' of ' + steps.length;
+      fill.style.width = (((step+1)/steps.length)*100) + '%';
+      titleEl.textContent = s.title;
+      bodyEl.textContent = s.body;
+      if(s.check){
+        checkWrap.hidden = false;
+        checkQ.textContent = s.check.q;
+        checkA.textContent = s.check.a;
+        checkA.classList.remove('shown');
+        revealBtn.textContent = 'Show answer';
+      } else {
+        checkWrap.hidden = true;
+      }
+      prevBtn.disabled = (step === 0);
+      var atEnd = (step === steps.length - 1);
+      nextBtn.hidden = atEnd;
+      endWrap.hidden = !atEnd;
+      renderDots();
+      save();
+    }
+
+    function init(){
+      stepLabel = document.getElementById('teachStepLabel');
+      fill = document.getElementById('teachProgressFill');
+      titleEl = document.getElementById('teachTitle');
+      bodyEl = document.getElementById('teachBody');
+      checkWrap = document.getElementById('teachCheck');
+      checkQ = document.getElementById('teachCheckQ');
+      checkA = document.getElementById('teachCheckA');
+      revealBtn = document.getElementById('teachRevealBtn');
+      prevBtn = document.getElementById('teachPrev');
+      nextBtn = document.getElementById('teachNext');
+      dotsWrap = document.getElementById('teachDots');
+      endWrap = document.getElementById('teachEnd');
+      toFlashBtn = document.getElementById('teachToFlash');
+      restartBtn = document.getElementById('teachRestart');
+      if(!titleEl) return;
+
+      revealBtn.addEventListener('click', function(){
+        var shown = checkA.classList.toggle('shown');
+        revealBtn.textContent = shown ? 'Hide answer' : 'Show answer';
+      });
+      prevBtn.addEventListener('click', function(){ if(step>0){ step--; render(); } });
+      nextBtn.addEventListener('click', function(){ if(step < lesson().length-1){ step++; render(); } });
+      toFlashBtn.addEventListener('click', function(){
+        show('flashcards');
+        var chip = document.querySelector('#pane-flashcards .fc-toolbar .chip[data-unit="' + unit + '"]');
+        if(chip) chip.click();
+      });
+      restartBtn.addEventListener('click', function(){ step = 0; render(); });
+
+      var unitChips = Array.prototype.slice.call(document.querySelectorAll('#teachUnitSelect .chip[data-tunit]'));
+      unitChips.forEach(function(chip){
+        chip.addEventListener('click', function(){
+          unitChips.forEach(function(c){ c.classList.remove('active'); });
+          chip.classList.add('active');
+          loadUnit(chip.getAttribute('data-tunit'));
+        });
+      });
+
+      loadUnit('marx');
+    }
+    init();
+  })();
+
+  /* ---------- Timeline ---------- */
+  (function(){
+    var axis = document.getElementById('tlAxis');
+    var rows = document.getElementById('tlRows');
+    if(!axis || !rows) return;
+    var minY = 1760, maxY = 2026;
+    function pct(y){ return ((y-minY)/(maxY-minY))*100; }
+    var ticks = [1760,1800,1850,1900,1950,2000,2026];
+    ticks.forEach(function(y){
+      var t = document.createElement('div'); t.className='tl-tick'; t.style.left = pct(y)+'%'; axis.appendChild(t);
+      var l = document.createElement('div'); l.className='tl-tick-label'; l.style.left = pct(y)+'%';
+      l.textContent = (y===2026 ? 'Today' : String(y)); axis.appendChild(l);
+    });
+    TIMELINE.slice().sort(function(a,b){ return a.birth-b.birth; }).forEach(function(t){
+      var row = document.createElement('div'); row.className='tl-row';
+      var name = document.createElement('div'); name.className='tl-name'; name.textContent = t.name;
+      var track = document.createElement('div'); track.className='tl-track';
+      var bar = document.createElement('div'); bar.className = 'tl-bar ' + t.status;
+      var endY = t.death || maxY;
+      var left = pct(t.birth), width = pct(endY) - pct(t.birth);
+      bar.style.left = left + '%'; bar.style.width = Math.max(width,1) + '%';
+      bar.title = t.name + ' (' + t.birth + (t.death ? '–' + t.death : '–present') + ') · ' + t.note;
+      track.appendChild(bar); row.appendChild(name); row.appendChild(track); rows.appendChild(row);
+    });
+  })();
+
+  /* init search index + restore last tab */
+  SEARCH_INDEX = buildSearchIndex();
+  var start = 'orient';
+  try{ var saved = localStorage.getItem('soci201-tab'); if(saved && panes[saved]) start = saved; }catch(e){}
+  show(start);
+})();
+</script>
+
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js');
+  });
+}
+</script>
+
+</body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7a1422">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Notebooks">
+<title>My Notebooks</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="icons/icon-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --paper: #f6f4f0;
+    --card: #ffffff;
+    --ink: #1d1b19;
+    --muted: #6a655e;
+    --line: #dcd7cf;
+    --maroon: #7a1422;
+    --slate: #2f4a5c;
+    --moss: #5b6b3a;
+    --focus: #7a1422;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17161a;
+      --card: #211f24;
+      --ink: #f0ece6;
+      --muted: #a29b92;
+      --line: #37343a;
+      --maroon: #c9505f;
+      --slate: #6f9bb5;
+      --moss: #9bb066;
+      --focus: #e08a96;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17161a;
+    --card: #211f24;
+    --ink: #f0ece6;
+    --muted: #a29b92;
+    --line: #37343a;
+    --maroon: #c9505f;
+    --slate: #6f9bb5;
+    --moss: #9bb066;
+    --focus: #e08a96;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+  main {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+  .sub {
+    color: var(--muted);
+    margin: 0 0 2.25rem;
+    max-width: 30rem;
+  }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+
+  .book {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    min-height: 6.5rem;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .book .spine {
+    background: var(--c);
+    position: relative;
+  }
+  .book .spine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(to bottom, transparent 0 0.9rem, rgba(0,0,0,0.18) 0.9rem 1rem);
+    opacity: 0.35;
+  }
+  .book .body { padding: 1rem 1.15rem 1.05rem; }
+  .book h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin: 0 0 0.15rem;
+  }
+  .book .who { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.55rem; }
+  .book .what { margin: 0; font-size: 0.97rem; max-width: 34rem; }
+
+  a.book:hover { border-color: var(--c); transform: translateY(-2px); }
+  a.book:active { transform: translateY(0); }
+  a.book:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  .book.pending {
+    background: transparent;
+    border-style: dashed;
+  }
+  .book.pending .spine { opacity: 0.45; }
+  .book.pending h2, .book.pending .what { color: var(--muted); }
+
+  .tip {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .tip strong { color: var(--ink); font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .book { transition: none; }
+    a.book:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>My notebooks</h1>
+  <p class="sub">Fall 2026. Tap a class to open its notes.</p>
+
+  <ul>
+    <li>
+      <a class="book" style="--c: var(--maroon)" href="social-theory.html">
+        <span class="spine" aria-hidden="true"></span>
+        <span class="body">
+          <h2>Classical Social Theory</h2>
+          <p class="who">Prof. Russo</p>
+          <p class="what">Marx, Durkheim, and each new unit as the course moves on.</p>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="book" style="--c: var(--slate)" href="political-thought.html">
+        <span class="spine" aria-hidden="true"></span>
+        <span class="body">
+          <h2>Foundations of Political Thought</h2>
+          <p class="who">POSC 260, Prof. Berk</p>
+          <p class="what">Reading cards, glossary, and flashcards, starting with Plato's Republic.</p>
+        </span>
+      </a>
+    </li>
+    <li>
+      <div class="book pending" style="--c: var(--moss)" aria-disabled="true">
+        <span class="spine" aria-hidden="true"></span>
+        <span class="body">
+          <h2>International Relations</h2>
+          <p class="who">Not built yet</p>
+          <p class="what">Weeks 1 to 5 readings will go here once the notebook is made.</p>
+        </span>
+      </div>
+    </li>
+  </ul>
+
+  <p class="tip"><strong>Keep this on your phone.</strong> On iPhone, open this page in Safari, tap Share, then Add to Home Screen. On Android, open it in Chrome and choose Add to Home screen from the menu.</p>
+</main>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js');
+  });
+}
+</script>
+</body>
+</html>

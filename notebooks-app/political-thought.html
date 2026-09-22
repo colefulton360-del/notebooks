@@ -1,0 +1,505 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#7a1422"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Notebooks"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png"><link rel="icon" href="icons/icon-512.png" sizes="512x512" type="image/png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Political Thought Notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241b16;
+    --muted:#68594e;
+    --paper:#f1ede4;
+    --surface:#ffffff;
+    --surface-2:#e8e0d1;
+    --line:#dbd0bc;
+    --accent:#8a3324;
+    --accent-ink:#ffffff;
+    --gold:#a9791f;
+    --shadow: 0 1px 2px rgba(36,27,22,.06), 0 6px 20px -10px rgba(36,27,22,.2);
+    --font-display:'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --font-body:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#efe6da; --muted:#b8a690; --paper:#181310; --surface:#221b16; --surface-2:#2b221b;
+      --line:#3a2f26; --accent:#d97a5f; --gold:#d9a53f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#efe6da; --muted:#b8a690; --paper:#181310; --surface:#221b16; --surface-2:#2b221b;
+    --line:#3a2f26; --accent:#d97a5f; --gold:#d9a53f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{ background:var(--paper); color:var(--ink); font-family:var(--font-body); margin:0; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:var(--font-display); text-wrap:balance; margin:0; }
+  p{ margin:0; }
+  a{ color:var(--accent); }
+
+  .app{ max-width:1180px; margin:0 auto; padding-inline:20px; }
+
+  .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-block:18px; border-bottom:1px solid var(--line); }
+  .brand{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .home-link{ display:inline-flex; align-items:center; gap:4px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:6px 4px; border-radius:6px; }
+  .home-link:hover{ color:var(--accent); }
+  .home-link:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .brand h1{ font-size:1.5rem; font-weight:600; letter-spacing:-.01em; }
+  .brand .course{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; }
+  .menu-btn{ display:none; border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:8px; padding:8px 10px; font-family:var(--font-mono); font-size:.8rem; cursor:pointer; }
+  .menu-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .search-wrap{ position:relative; flex:1 1 220px; max-width:360px; }
+  .search-input{ width:100%; font-family:var(--font-mono); font-size:.82rem; padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink); }
+  .search-input:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .search-results{ position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:30; background:var(--surface); border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); max-height:340px; overflow-y:auto; padding:6px; }
+  .search-result{ display:block; width:100%; text-align:left; border:none; background:transparent; color:var(--ink); padding:8px 9px; border-radius:7px; cursor:pointer; font-size:.84rem; line-height:1.45; }
+  .search-result:hover, .search-result:focus-visible{ background:var(--surface-2); }
+  .search-result .sr-unit{ display:block; font-family:var(--font-mono); font-size:.65rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); margin-bottom:3px; }
+  .search-result mark{ background:transparent; color:var(--gold); font-weight:700; padding:0; }
+  .search-empty{ padding:10px; font-size:.82rem; color:var(--muted); }
+  @keyframes flashbg{ 0%{ background:rgba(169,121,31,.35); } 100%{ background:transparent; } }
+  .flash-hit{ animation:flashbg 1.6s ease; border-radius:8px; }
+
+  .layout{ display:grid; grid-template-columns:220px 1fr; gap:32px; padding-block:28px 60px; align-items:start; }
+  .rail-scrim{ display:none; }
+
+  .rail{ position:sticky; top:16px; display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:8px; box-shadow:var(--shadow); }
+  .rail-item{ display:flex; align-items:center; gap:9px; width:100%; text-align:left; border:none; background:transparent; color:var(--ink); font-family:var(--font-body); font-size:.87rem; font-weight:500; padding:9px 10px; border-radius:8px; cursor:pointer; }
+  .rail-item:hover{ background:var(--surface-2); }
+  .rail-item.active{ background:var(--accent); color:var(--accent-ink); }
+  .rail-item.active .dot{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .rail-item:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .dot{ width:7px; height:7px; border-radius:50%; flex:none; border:1.5px solid var(--muted); background:transparent; }
+  .dot.done{ background:var(--accent); border-color:var(--accent); }
+  .dot.progress{ background:var(--gold); border-color:var(--gold); }
+  .rail-item.active .dot.progress{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .rail-sep{ height:1px; background:var(--line); margin:6px 4px; }
+  .rail-foot{ padding:10px 10px 4px; }
+  .rail-foot a{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted); text-decoration:none; }
+  .rail-foot a:hover{ color:var(--accent); }
+
+  .content{ min-width:0; }
+  .pane{ display:flex; flex-direction:column; gap:26px; }
+  .pane-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:10px; }
+  .pane-head h2{ font-size:1.9rem; font-weight:600; }
+  .status-pill{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; padding:4px 9px; border-radius:99px; border:1px solid var(--line); color:var(--muted); }
+  .status-pill.progress{ color:var(--gold); border-color:var(--gold); }
+
+  .lede{ font-size:.98rem; line-height:1.65; max-width:66ch; }
+  .lede.muted{ color:var(--muted); font-style:italic; }
+  .cite{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+  h3.sub{ font-size:1.15rem; font-weight:600; margin-top:4px; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow); }
+
+  blockquote.pull{ margin:0; padding:12px 16px; border-left:3px solid var(--gold); background:var(--surface); border-radius:0 10px 10px 0; box-shadow:var(--shadow); font-size:.95rem; line-height:1.6; max-width:68ch; }
+  blockquote.pull cite{ display:block; margin-top:8px; font-family:var(--font-mono); font-size:.72rem; color:var(--muted); font-style:normal; }
+
+  .qa{ display:flex; flex-direction:column; gap:12px; }
+  .qa-item{ display:flex; flex-direction:column; gap:5px; max-width:70ch; }
+  .qa-item .q{ font-weight:600; font-size:.94rem; }
+  .qa-item .q::before{ content:"Q · "; color:var(--accent); font-family:var(--font-mono); font-weight:500; }
+  .qa-item .a{ font-size:.94rem; line-height:1.62; color:var(--ink); }
+
+  ul.list{ margin:0; padding-left:1.2em; display:flex; flex-direction:column; gap:7px; max-width:66ch; font-size:.94rem; line-height:1.55; }
+  ul.list li::marker{ color:var(--accent); }
+
+  .readings-unit{ display:flex; flex-direction:column; gap:10px; }
+  .readings-unit h3.sub{ margin-top:10px; }
+  details.reading-card{ max-width:74ch; }
+  details.reading-card > summary.rd-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; cursor:pointer; list-style:none; position:relative; padding-right:26px; margin:-2px 0; }
+  details.reading-card > summary.rd-head::-webkit-details-marker{ display:none; }
+  details.reading-card > summary.rd-head::after{ content:''; position:absolute; right:2px; top:6px; width:8px; height:8px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(-45deg); transition:transform .15s ease; }
+  details.reading-card[open] > summary.rd-head::after{ transform:rotate(45deg); top:2px; }
+  details.reading-card > summary.rd-head:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:6px; }
+  .rd-body{ display:flex; flex-direction:column; gap:12px; padding-top:12px; }
+  .rd-date{ font-family:var(--font-mono); font-size:.76rem; font-weight:700; color:var(--accent); white-space:nowrap; }
+  .rd-terms{ display:flex; flex-direction:column; gap:7px; background:var(--surface-2); border-radius:9px; padding:11px 13px; }
+  .rd-term{ font-size:.86rem; line-height:1.55; }
+  .rd-term strong{ color:var(--accent); font-weight:600; }
+  .rd-check{ font-size:.9rem; line-height:1.55; padding:2px 2px 0; border-top:1px dashed var(--line); padding-top:9px; }
+  .rd-check strong{ color:var(--gold); font-weight:600; }
+
+  .term{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:13px 15px; box-shadow:var(--shadow); }
+  .term dt{ font-family:var(--font-mono); font-weight:500; font-size:.88rem; color:var(--accent); }
+  .term dd{ margin:5px 0 0; font-size:.9rem; line-height:1.55; color:var(--ink); }
+  .glossary-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+  footer.note{ margin-top:8px; font-size:.8rem; color:var(--muted); max-width:60ch; line-height:1.5; }
+
+  /* Flashcards */
+  .fc-toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .chip{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.03em; text-transform:uppercase; padding:6px 11px; border-radius:99px; border:1px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer; }
+  .chip.active{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .chip:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .fc-stage{ display:flex; flex-direction:column; align-items:center; gap:16px; padding-block:8px; }
+  .fc-progress{ font-family:var(--font-mono); font-size:.78rem; color:var(--muted); }
+  .fc-card-wrap{ width:100%; max-width:460px; perspective:1400px; }
+  .fc-card{ position:relative; width:100%; min-height:220px; cursor:pointer; transform-style:preserve-3d; transition:transform .45s cubic-bezier(.4,.2,.2,1); }
+  .fc-card.flipped{ transform:rotateY(180deg); }
+  .fc-card:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:14px; }
+  .fc-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow); background:var(--surface); display:flex; flex-direction:column; justify-content:center; gap:10px; padding:22px 24px; text-align:center; }
+  .fc-face.back{ transform:rotateY(180deg); background:var(--surface-2); }
+  .fc-tag{ font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); min-height:1em; }
+  .fc-text{ font-size:1.05rem; line-height:1.5; font-weight:500; }
+  .fc-face.back .fc-text{ font-weight:400; font-size:.94rem; text-align:left; }
+  .fc-controls{ display:flex; align-items:center; gap:10px; }
+  .fc-btn{ font-family:var(--font-body); font-weight:600; font-size:.85rem; border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:9px 14px; border-radius:9px; cursor:pointer; }
+  .fc-btn:hover{ background:var(--surface-2); }
+  .fc-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .fc-btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+
+  @media (max-width:820px){
+    .layout{ grid-template-columns:1fr; padding-block:18px 40px; }
+    .menu-btn{ display:inline-flex; }
+    .rail{ position:fixed; inset:0 auto 0 0; height:100dvh; width:240px; z-index:20; transform:translateX(-105%); transition:transform .2s ease; border-radius:0; overflow-y:auto; top:0; }
+    .rail.open{ transform:translateX(0); }
+    .rail-scrim{ display:none; position:fixed; inset:0; background:rgba(20,14,10,.4); z-index:19; }
+    .rail-scrim.open{ display:block; }
+    .glossary-grid{ grid-template-columns:1fr; }
+    .pane-head h2{ font-size:1.55rem; }
+    .search-wrap{ order:3; flex-basis:100%; max-width:none; }
+  }
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <a class="home-link" href="index.html">&larr; Notebooks</a>
+      <h1>Political Thought Notebook</h1>
+      <span class="course">POSC 260 &middot; Prof. Berk &middot; Fall 2026</span>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search notes&hellip;" autocomplete="off" aria-label="Search notebook">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">&#9776; Menu</button>
+  </div>
+
+  <div class="rail-scrim" id="railScrim"></div>
+  <div class="layout">
+    <nav class="rail" id="rail">
+      <button class="rail-item" data-pane="orient"><span class="dot done"></span>Getting Oriented</button>
+      <button class="rail-item active" data-pane="readings"><span class="dot progress"></span>Daily Readings</button>
+      <div class="rail-sep"></div>
+      <button class="rail-item" data-pane="glossary"><span class="dot"></span>Glossary</button>
+      <button class="rail-item" data-pane="flashcards"><span class="dot"></span>Flashcards</button>
+      <div class="rail-foot"><a href="#" id="topLink">Back to top</a></div>
+    </nav>
+
+    <div class="content">
+
+      <!-- GETTING ORIENTED -->
+      <section class="pane" id="pane-orient" hidden>
+        <div class="pane-head"><h2>Getting Oriented</h2><span class="status-pill done">Background</span></div>
+
+        <div class="block">
+          <h3 class="sub">Why the course starts with Plato</h3>
+          <p class="lede">POSC 260's throughline is a single question asked across two thousand years: what grounds political order &mdash; human nature, divine will, or human construction &mdash; and who's entitled to rule on that basis? The syllabus is organized so each later thinker is legible as an answer to, or a rebellion against, the one before: Aristotle largely accepts Plato's premise that politics should aim at virtue but rejects his methodology (empirical observation of existing constitutions vs. Plato's top-down design from first principles); Augustine reframes the whole project through Christian revelation; Machiavelli and Hobbes represent the sharpest possible break, grounding politics in human nature stripped of any appeal to a transcendent Good. Reading Plato first isn't just chronological &mdash; it's the premise everyone after him is reacting to.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Historical context</h3>
+          <p class="lede">The <em>Republic</em> was written in the early 4th century BCE, in the aftermath of Athens's defeat in the Peloponnesian War (431&ndash;404 BCE) and the brutal, short-lived oligarchic coup known as the Thirty Tyrants (404&ndash;403 BCE) &mdash; a regime that included Plato's own relatives and that executed or exiled thousands of Athenians. Democracy was restored in 403 BCE, and in 399 BCE that restored democracy tried and executed Plato's teacher, Socrates, on charges of impiety and corrupting the youth. This isn't background trivia: Plato lived through both a violent oligarchy and a democracy that killed his teacher, which is a large part of why the <em>Republic</em> treats both as failed regimes (Book VIII) and searches for a third alternative grounded in knowledge rather than either wealth or popular opinion.</p>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">The Socratic method</h3>
+          <p class="lede">Nearly everything in the <em>Republic</em> happens through <strong>elenchus</strong> &mdash; Socrates cross-examining an interlocutor's claim by drawing out its logical consequences until it contradicts itself or collapses. It's worth tracking this as a method distinct from the content of any given argument: Adeimantus's "checkers game" complaint in Book VI (that people walk away out-argued but not persuaded) is really a critique of elenchus itself, and it's a useful lens for the whole dialogue &mdash; ask not just "what is Socrates arguing?" but "how is he getting his interlocutors to agree, and does that agreement actually track truth?"</p>
+        </div>
+
+        <div class="block">
+          <h3 class="sub">Course arc so far</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th></th><th>Ground of politics</th><th>Method</th><th>Who should rule</th></tr>
+              <tr>
+                <td>Plato</td>
+                <td>Knowledge of the eternal Forms, especially the Good</td>
+                <td>Top-down design from first principles; dialectic</td>
+                <td>Philosopher-kings &mdash; whoever actually knows the Good</td>
+              </tr>
+              <tr>
+                <td>Aristotle <span style="color:var(--muted); font-style:italic;">(upcoming)</span></td>
+                <td>Human nature as a "political animal"; virtue realized in the polis</td>
+                <td>Empirical comparison of existing constitutions</td>
+                <td>Varies by regime; skeptical of Plato's single ideal city</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAILY READINGS -->
+      <section class="pane" id="pane-readings" hidden>
+        <div class="pane-head"><h2>Daily Readings</h2><span class="status-pill progress">Part I &middot; in progress</span></div>
+        <p class="lede muted">Click a date to open it &mdash; the argument walked through in depth, key terms defined, and a question to check you can use the concept, not just name it. Send along lecture notes or guided-question answers from a specific class and I&rsquo;ll fold them into that date&rsquo;s card.</p>
+
+        <div class="readings-unit">
+          <h3 class="sub">Week 1 &middot; Book I</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Fri 8/28</span><span class="cite">Republic, Book I</span></summary>
+            <div class="rd-body">
+            <p class="lede">Socrates narrates a visit to Piraeus, where he's drawn into a conversation about justice at the house of Cephalus, a wealthy elderly metic. The book moves through three increasingly serious attempts to define justice, each one refuted. Cephalus opens with a practical, old-man's view: justice is honesty and paying what you owe. Socrates breaks this with a single counterexample &mdash; returning a weapon to a friend who's gone mad would be harmful, not just &mdash; showing that a rule-based definition ("always repay debts") can't survive contact with edge cases. Cephalus's son Polemarchus revises this into "helping friends, harming enemies," which Socrates dismantles on two fronts: we're often wrong about who our real friends are, and more damningly, justice is a virtue, so if harming someone makes them worse (less virtuous), a just person harming anyone at all is a contradiction. Then Thrasymachus arrives with the book's real challenge: justice is nothing but "the advantage of the stronger" &mdash; rulers make laws that serve themselves, and obedience is just submission dressed up as virtue. Socrates counters with a craft analogy (medicine aims at the patient's good, not the doctor's) and a functional analogy (a soul divided against itself, like a band of thieves with no honor among them, can't act effectively even at injustice) &mdash; but notably, the book ends without a positive definition of justice, only refutations. That's deliberate: it sets up Glaucon's demand in Book II for something better than a knockout argument.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Elenchus:</strong> the Socratic method of cross-examination &mdash; testing a claim by drawing out its consequences until it contradicts itself.</div>
+              <div class="rd-term"><strong>"Advantage of the stronger":</strong> Thrasymachus's claim that justice is really just whatever serves the interests of whoever holds power.</div>
+              <div class="rd-term"><strong>Craft analogy:</strong> Socrates's move of comparing ruling to a craft (medicine, navigation) that, properly practiced, aims at the good of what it governs rather than the practitioner's own advantage.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Socrates think Thrasymachus's "obedience serves the ruler's advantage" claim breaks down once you admit rulers can be mistaken about their own interest?</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Week 2 &middot; Book I (cont.), II, III&ndash;IV</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Tue 9/1</span><span class="cite">Republic, Book I (cont.); Book II</span></summary>
+            <div class="rd-body">
+            <p class="lede">Book II opens with Glaucon dissatisfied: Thrasymachus was silenced, not actually refuted, and a real defense of justice needs to survive its strongest form. He sorts goods into three categories &mdash; valued only for consequences, valued only in themselves, and valued both ways &mdash; and demands Socrates show justice belongs in that third, best category, not merely tolerated for its reputation. He then builds the strongest possible case against justice being good in itself. First, a social-contract account: people agree to be just only because they lack the power to get away with injustice, illustrated by the <strong>Ring of Gyges</strong> &mdash; if a person could turn invisible and act with total impunity, would they still choose to be just? Second, a thought experiment: strip away reputation entirely and compare a perfectly unjust man with a flawless <em>reputation</em> for justice against a perfectly just man falsely believed to be unjust and punished for it &mdash; which life is actually better? Adeimantus adds that even parents and poets only praise justice for its payoffs (reputation, divine reward), never as good in itself &mdash; which is exactly the gap Socrates has to close. Socrates's strategy: since justice is hard to see clearly in one person, examine it "writ large" in a city first, and starts building one from basic needs upward.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Ring of Gyges:</strong> a ring granting invisibility, used to test whether justice is chosen for its own sake or only out of fear of getting caught.</div>
+              <div class="rd-term"><strong>The three kinds of goods:</strong> Glaucon's typology &mdash; goods good only for consequences, only in themselves, or both; justice needs to land in the third.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> What is Glaucon actually trying to accomplish by making the strongest possible case <em>against</em> justice, if he doesn't personally believe it?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Wed 9/2, 6:30pm</span><span class="cite">Republic, Books III&ndash;IV</span></summary>
+            <div class="rd-body">
+            <p class="lede">Book III finishes designing the guardians' early education, centered on poetry and music before physical training. Socrates argues stories shape character through imitation, so tales of gods lying, quarreling, or an afterlife to be feared get censored or rewritten &mdash; future guardians need role models of virtue and courage, not reasons to fear death in battle. Musical modes and rhythms are similarly filtered to cultivate courage and moderation rather than softness. Physical training is paired with this, not separated from it: gymnastics alone, Socrates warns, produces harshness without the arts to civilize it. The book closes with the <strong>"noble lie"</strong> &mdash; a founding myth telling citizens they're born with gold, silver, or bronze/iron in their souls, meant to secure acceptance of the city's class structure. Book IV completes the city's three classes &mdash; rulers, auxiliaries, producers &mdash; and maps the four cardinal virtues onto it: wisdom in the rulers' knowledge, courage in the auxiliaries' training, moderation as citywide agreement about who should rule, and justice as each class doing only its own job. Socrates then argues the same tripartite structure exists in a single soul &mdash; reason, spirit, appetite &mdash; with justice meaning each part plays its proper role and reason governs. This city/soul parallel is the structural backbone for everything through Book IX.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Noble lie:</strong> a founding myth (the "myth of metals") told to unify the city around its class structure.</div>
+              <div class="rd-term"><strong>Tripartite soul:</strong> Socrates's division of the soul into reason, spirit (thumos), and appetite.</div>
+              <div class="rd-term"><strong>Justice (city/soul definition):</strong> each part/class doing its own proper job without interfering in the others'.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Explain the city/soul analogy in one or two sentences &mdash; how does each of the three soul-parts map onto a class in the city?</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Week 3 &middot; Books V; VI</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Tue 9/8</span><span class="cite">Republic, Book V</span></summary>
+            <div class="rd-body">
+            <p class="lede">Socrates works through three "waves" of increasingly provocative claims: equal education and roles for women guardians, communal wives/children/property among the guardian class (meant to eliminate private interest that could divide the ruling class), and &mdash; the biggest wave, the one the rest of the unit hinges on &mdash; that philosophers must rule, or existing rulers must become philosophers, before the ideal city can exist at all. Socrates is explicit that this claim will draw "waves of laughter," which is itself a signal of how far it departs from Athenian common sense about who's fit to govern.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>The three waves:</strong> Socrates's three escalating, deliberately provocative proposals in Book V.</div>
+              <div class="rd-term"><strong>Philosopher-king thesis:</strong> the claim that political power and philosophical wisdom must converge in the same person/people.</div>
+            </div>
+            <blockquote class="pull">&ldquo;Until philosophers are kings, or the kings and princes of this world have the spirit and power of philosophy, and political greatness and wisdom meet in one, and those commoner natures who pursue either to the exclusion of the other are compelled to stand aside, cities will never have rest from their evils &mdash; nor the human race, as I believe &mdash; and then only will this our state have a possibility of life and behold the light of day.&rdquo;<cite>Republic 473c&ndash;e (Jowett trans., public domain) &mdash; your course edition is Bloom's, so exact wording/pagination will differ.</cite></blockquote>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does the "compelled to stand aside" clause matter as much as the philosopher-ruler claim itself &mdash; what's the argument doing on both ends?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Thu 9/10</span><span class="cite">Republic, Book VI</span></summary>
+            <div class="rd-body">
+            <p class="lede">Book VI defines the philosopher and defends the claim Book V just dropped. A true philosopher loves wisdom as a whole &mdash; the eternal, unchanging Forms &mdash; not just particular beautiful or pleasant things (contrasted with mere "sight-lovers" and "sound-lovers"). This orientation toward truth brings a cluster of virtues along with it almost automatically: honesty, courage, moderation, justice. Adeimantus interrupts with an objection: no one can refute Socrates step by step, yet people walk away out-argued rather than genuinely persuaded &mdash; like a novice checkers player boxed in by an expert who can't say exactly where they went wrong &mdash; and real "philosophers," he says, tend to be useless or corrupt in practice. Socrates doesn't dismiss this; he agrees it's often true, but blames the city, not philosophy itself, via the <strong>Ship of State</strong> analogy: a true navigator is dismissed as a useless "stargazer" by a crew that flatters the shipowner and fights over the wheel &mdash; talented natures get corrupted by public opinion and political life instead of properly educated. The book then climbs toward the philosopher's highest object of knowledge: the <strong>Form of the Good</strong>, explained through the <strong>Sun analogy</strong> (the Good illuminates truth the way the sun illuminates sight, and is the source of intelligibility itself, not just one more object of knowledge) and the <strong>Divided Line</strong>, which maps four ascending levels of cognition.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Ship of State:</strong> Socrates's analogy for why a true philosopher looks useless &mdash; the city mistreats and misuses him, rather than philosophy itself producing uselessness.</div>
+              <div class="rd-term"><strong>Form of the Good:</strong> the highest Form, source of truth and intelligibility for everything else that can be known.</div>
+              <div class="rd-term"><strong>Divided Line:</strong> four ascending levels of cognition &mdash; imagination (eikasia), belief (pistis), thought (dianoia), understanding (noesis).</div>
+            </div>
+            <div class="qa">
+              <div class="qa-item">
+                <div class="q">Why are philosophers entitled to rule, according to Socrates's argument here?</div>
+                <div class="a">Because ruling is treated as a craft that should belong to whoever actually knows the good of what's governed &mdash; not to whoever is popular or powerful. Non-philosophers are stuck judging by opinion and appearance (the Divided Line's lower levels); only someone who has grasped the Form of the Good can reliably tell what's truly good for the city as opposed to what merely seems good. Just as importantly, philosophers don't <em>want</em> power, which is precisely why they can be trusted with it &mdash; unlike rulers who chase power for its own sake and rule badly as a result. It mirrors the city/soul parallel from Book IV: reason should govern spirit and appetite in the soul, so philosophers (reason's representatives) should govern the city.</div>
+              </div>
+              <div class="qa-item">
+                <div class="q">What is Adeimantus's "checkers game" objection actually targeting?</div>
+                <div class="a">Not the truth of Socrates's conclusion, but the persuasiveness of Socratic argument itself &mdash; you can win every individual exchange (elenchus) and still leave the listener's real intuitions unconvinced, the way a skilled player can box in a novice without the novice understanding why. It's Plato flagging the gap between logical victory and genuine persuasion, and it's what forces Socrates to answer with the Ship of State analogy &mdash; an appeal to how philosophers actually get treated &mdash; rather than another logical proof.</div>
+              </div>
+            </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="readings-unit">
+          <h3 class="sub">Week 4 &middot; Book VII; VIII&ndash;IX</h3>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Tue 9/15</span><span class="cite">Republic, Book VII</span></summary>
+            <div class="rd-body">
+            <p class="lede">Opens with the <strong>Allegory of the Cave</strong>: prisoners chained since childhood face a wall, mistaking shadows cast by a fire for the whole of reality. One is freed, painfully dragged up into daylight, and gradually comes to see the sun itself &mdash; the Good &mdash; as the source of everything visible. Returning to free the others, his eyes fumble in the unfamiliar dark; the prisoners conclude the ascent ruined him and may turn violent against anyone who tries to free them. Socrates maps this directly onto Book VI's imagery (cave = the visible world, ascent = the soul's education, sun = the Good) and reframes education as <strong>turning the soul</strong> to face the right direction, not pouring knowledge into an empty mind. The rest of the book lays out the actual curriculum meant to accomplish that turn: arithmetic, plane and solid geometry, astronomy, and harmonics, all studied as abstract reasoning rather than empirical observation, culminating in <strong>dialectic</strong> &mdash; the only method capable of moving past hypotheses to grasp the Good itself as an unconditioned first principle. Socrates lays out an age-based timeline stretching into a ruler's 50s, and reiterates that philosophers must be <em>compelled</em> to rule, since they'd rather stay contemplating the Forms &mdash; a reluctance he treats as exactly what makes them trustworthy with power.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Allegory of the Cave:</strong> the image of prisoners mistaking shadows for reality, used to illustrate the soul's ascent from ignorance to knowledge of the Good.</div>
+              <div class="rd-term"><strong>Turning the soul (periagoge):</strong> Plato's model of education as redirection, not the transfer of information into an empty mind.</div>
+              <div class="rd-term"><strong>Dialectic:</strong> the capstone discipline of the curriculum, reasoning that moves beyond hypotheses to the unconditioned first principle (the Good).</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Why does Plato insist the guardians' math and astronomy be studied abstractly rather than practically or observationally &mdash; what's that restriction doing for the soul's ascent?</p>
+            </div>
+          </details>
+
+          <details class="card reading-card">
+            <summary class="rd-head"><span class="rd-date">Thu 9/17</span><span class="cite">Republic, Books VIII&ndash;IX</span></summary>
+            <div class="rd-body">
+            <p class="lede">Book VIII traces the decline of political regimes away from the ideal aristocracy, through <strong>timocracy</strong> (rule by honor-lovers, prizing military glory over wisdom), <strong>oligarchy</strong> (rule by the wealthy, where money replaces honor as the object of desire), <strong>democracy</strong> (rule by the many, prizing freedom to the point of having no stable hierarchy of values at all), down to <strong>tyranny</strong> &mdash; each regime paired with a corresponding character type in the individual soul, so the city's decline and the soul's decline are the same story told twice. Book IX completes this with the tyrannical man as the most unjust and, Socrates argues, the most miserable type of all &mdash; enslaved to his own worst appetites and living in constant fear. Socrates offers three separate proofs that the just life is the happiest life, including the striking image of the soul as a composite creature &mdash; a human, a lion, and a many-headed beast fused together &mdash; where justice means the human (rational) part governs the other two, and injustice means the beast is left to run the whole creature.</p>
+            <div class="rd-terms">
+              <div class="rd-term"><strong>Regime decline sequence:</strong> aristocracy &rarr; timocracy &rarr; oligarchy &rarr; democracy &rarr; tyranny.</div>
+              <div class="rd-term"><strong>Soul/regime parallel:</strong> each political regime in Book VIII corresponds to a dominant character type in the individual soul.</div>
+              <div class="rd-term"><strong>The composite-creature image:</strong> the soul pictured as a human, lion, and many-headed beast in one body, used in Book IX to argue justice means reason governing the other two.</div>
+            </div>
+            <p class="rd-check"><strong>Before class, be able to answer:</strong> Pick one regime from the decline sequence and explain what value it prizes above the others, and how that value's overreach produces the next regime down.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="empty" style="border:1px dashed var(--line); border-radius:12px; padding:20px; text-align:center; color:var(--muted); font-size:.9rem; max-width:64ch;">
+          Aristotle's <em>Politics</em> begins Week 5 (Sept 22). Send along notes as you go and this pane keeps pace with the course.
+        </div>
+      </section>
+
+      <!-- GLOSSARY -->
+      <section class="pane" id="pane-glossary" hidden>
+        <div class="pane-head"><h2>Glossary</h2></div>
+        <p class="lede muted">Every key term introduced so far, gathered in one place.</p>
+        <div class="glossary-grid" id="glossaryGrid"></div>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section class="pane" id="pane-flashcards" hidden>
+        <div class="pane-head"><h2>Flashcards</h2></div>
+        <div class="fc-stage">
+          <div class="fc-progress" id="fcProgress">1 / 1</div>
+          <div class="fc-card-wrap">
+            <div class="fc-card" id="fcCard" tabindex="0" role="button" aria-label="Flip card">
+              <div class="fc-face front"><span class="fc-tag" id="fcTagFront">Term</span><span class="fc-text" id="fcFront"></span></div>
+              <div class="fc-face back"><span class="fc-tag">Definition</span><span class="fc-text" id="fcBack"></span></div>
+            </div>
+          </div>
+          <div class="fc-controls">
+            <button class="fc-btn" id="fcPrev">&larr; Prev</button>
+            <button class="fc-btn primary" id="fcFlip">Flip</button>
+            <button class="fc-btn" id="fcNext">Next &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var GLOSSARY = [
+    {t:"Elenchus", d:"The Socratic method of cross-examination — testing a claim by drawing out its consequences until it contradicts itself."},
+    {t:'"Advantage of the stronger"', d:"Thrasymachus's claim that justice is really just whatever serves the interests of whoever holds power."},
+    {t:"Craft analogy", d:"Socrates's comparison of ruling to a craft (medicine, navigation) that, properly practiced, aims at the good of what it governs, not the practitioner's own advantage."},
+    {t:"Ring of Gyges", d:"A ring granting invisibility, used to test whether justice is chosen for its own sake or only out of fear of getting caught."},
+    {t:"The three kinds of goods", d:"Glaucon's typology — goods good only for consequences, only in themselves, or both; justice needs to land in the third."},
+    {t:"Noble lie", d:'A founding myth (the "myth of metals") told to unify the city around its class structure.'},
+    {t:"Tripartite soul", d:"Socrates's division of the soul into reason, spirit (thumos), and appetite."},
+    {t:"Justice (city/soul definition)", d:"Each part/class doing its own proper job without interfering in the others'."},
+    {t:"The three waves", d:"Socrates's three escalating, deliberately provocative proposals in Book V (equal guardians, communal property, philosopher-kings)."},
+    {t:"Philosopher-king thesis", d:"The claim that political power and philosophical wisdom must converge in the same person/people."},
+    {t:"Ship of State", d:"Socrates's analogy for why a true philosopher looks useless — the city mistreats and misuses him, rather than philosophy itself producing uselessness."},
+    {t:"Form of the Good", d:"The highest Form, source of truth and intelligibility for everything else that can be known."},
+    {t:"Divided Line", d:"Four ascending levels of cognition — imagination (eikasia), belief (pistis), thought (dianoia), understanding (noesis)."},
+    {t:"Allegory of the Cave", d:"The image of prisoners mistaking shadows for reality, used to illustrate the soul's ascent from ignorance to knowledge of the Good."},
+    {t:"Turning the soul (periagoge)", d:"Plato's model of education as redirection, not the transfer of information into an empty mind."},
+    {t:"Dialectic", d:"The capstone discipline of the philosopher's curriculum — reasoning that moves beyond hypotheses to the unconditioned first principle (the Good)."},
+    {t:"Regime decline sequence", d:"Aristocracy → timocracy → oligarchy → democracy → tyranny."},
+    {t:"Soul/regime parallel", d:"Each political regime in Book VIII corresponds to a dominant character type in the individual soul."},
+    {t:"The composite-creature image", d:"The soul pictured as a human, lion, and many-headed beast in one body, used in Book IX to argue justice means reason governing the other two."}
+  ];
+
+  var panes = { orient:document.getElementById('pane-orient'), readings:document.getElementById('pane-readings'), glossary:document.getElementById('pane-glossary'), flashcards:document.getElementById('pane-flashcards') };
+  var railItems = Array.prototype.slice.call(document.querySelectorAll('.rail-item'));
+  var rail = document.getElementById('rail'), railScrim = document.getElementById('railScrim'), menuBtn = document.getElementById('menuBtn');
+
+  function show(name){
+    Object.keys(panes).forEach(function(k){ panes[k].hidden = (k!==name); });
+    railItems.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-pane')===name); });
+    try{ localStorage.setItem('posc260-tab', name); }catch(e){}
+    rail.classList.remove('open'); railScrim.classList.remove('open');
+  }
+  railItems.forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-pane')); }); });
+  menuBtn.addEventListener('click', function(){ rail.classList.toggle('open'); railScrim.classList.toggle('open'); });
+  railScrim.addEventListener('click', function(){ rail.classList.remove('open'); railScrim.classList.remove('open'); });
+  document.getElementById('topLink').addEventListener('click', function(e){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+
+  /* Glossary render */
+  var grid = document.getElementById('glossaryGrid');
+  GLOSSARY.forEach(function(g){
+    var d = document.createElement('div'); d.className='term';
+    var dt = document.createElement('dt'); dt.textContent = g.t;
+    var dd = document.createElement('dd'); dd.textContent = g.d;
+    var dl = document.createElement('dl'); dl.style.margin='0'; dl.appendChild(dt); dl.appendChild(dd);
+    d.appendChild(dl); grid.appendChild(d);
+  });
+
+  /* Flashcards */
+  var fcIdx = 0;
+  var fcCard = document.getElementById('fcCard'), fcFront = document.getElementById('fcFront'), fcBack = document.getElementById('fcBack'), fcProgress = document.getElementById('fcProgress');
+  function renderFc(){
+    var g = GLOSSARY[fcIdx];
+    fcCard.classList.remove('flipped');
+    fcFront.textContent = g.t; fcBack.textContent = g.d;
+    fcProgress.textContent = (fcIdx+1) + ' / ' + GLOSSARY.length;
+  }
+  fcCard.addEventListener('click', function(){ fcCard.classList.toggle('flipped'); });
+  fcCard.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fcCard.classList.toggle('flipped'); } });
+  document.getElementById('fcFlip').addEventListener('click', function(){ fcCard.classList.toggle('flipped'); });
+  document.getElementById('fcPrev').addEventListener('click', function(){ fcIdx = (fcIdx-1+GLOSSARY.length)%GLOSSARY.length; renderFc(); });
+  document.getElementById('fcNext').addEventListener('click', function(){ fcIdx = (fcIdx+1)%GLOSSARY.length; renderFc(); });
+  renderFc();
+
+  /* Search */
+  var searchInput = document.getElementById('searchInput'), searchResults = document.getElementById('searchResults');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.reading-card'));
+  var INDEX = cards.map(function(c){
+    var date = c.querySelector('.rd-date') ? c.querySelector('.rd-date').textContent : '';
+    var cite = c.querySelector('.rd-head .cite') ? c.querySelector('.rd-head .cite').textContent : '';
+    var body = c.querySelector('.rd-body') ? c.querySelector('.rd-body').textContent : '';
+    return { el:c, date:date, cite:cite, text:(date+' '+cite+' '+body).toLowerCase(), label: date+' — '+cite };
+  });
+  function runSearch(q){
+    q = q.trim().toLowerCase();
+    searchResults.innerHTML = '';
+    if(!q){ searchResults.hidden = true; return; }
+    var hits = INDEX.filter(function(i){ return i.text.indexOf(q)>-1; }).slice(0,8);
+    if(!hits.length){
+      var e = document.createElement('div'); e.className='search-empty'; e.textContent='No matches.';
+      searchResults.appendChild(e); searchResults.hidden = false; return;
+    }
+    hits.forEach(function(h){
+      var b = document.createElement('button'); b.type='button'; b.className='search-result';
+      var u = document.createElement('span'); u.className='sr-unit'; u.textContent = h.date;
+      b.appendChild(u);
+      b.appendChild(document.createTextNode(h.cite));
+      b.addEventListener('click', function(){
+        show('readings');
+        h.el.open = true;
+        h.el.scrollIntoView({behavior:'smooth', block:'center'});
+        h.el.classList.add('flash-hit');
+        setTimeout(function(){ h.el.classList.remove('flash-hit'); }, 1700);
+        searchResults.hidden = true; searchInput.value='';
+      });
+      searchResults.appendChild(b);
+    });
+    searchResults.hidden = false;
+  }
+  searchInput.addEventListener('input', function(){ runSearch(searchInput.value); });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.search-wrap')) searchResults.hidden = true; });
+
+  var start = 'orient';
+  try{ var saved = localStorage.getItem('posc260-tab'); if(saved && panes[saved]) start = saved; }catch(e){}
+  show(start);
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js');
+  });
+}
+</script>
+
+</body></html>
